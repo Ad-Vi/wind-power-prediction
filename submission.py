@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import pandas as pd
+from sklearn.neighbors import KNeighborsRegressor
 
 
 def split_train_test(X, Y):
@@ -36,6 +37,7 @@ def split_train_test(X, Y):
 if __name__ == '__main__':
 
     flatten = True
+    does_print = True
     N_ZONES = 10
     X_format = 'data/X_Zone_{i}.csv'
     Y_format = 'data/Y_Zone_{i}.csv'
@@ -53,17 +55,41 @@ if __name__ == '__main__':
             X_train, X_test, Y_train = split_train_test(Xs[i], Ys[i])
             Xs[i] = (X_train, X_test)
             Ys[i] = Y_train
-
+    if does_print:
+        print('Read input and output files\n')
+        print('Xtrain : Xs[0][0].shape =', Xs[0][0].shape)
+        print('Ytrain : Ys[0].shape =', Ys[0].shape)
+        print('Xtest : Xs[0][1].shape =', Xs[0][1].shape)
     # Fit your models here
     # ...
+    Y_test = []
+    # KNN -------------------------------------
+    if does_print:
+        print('KNN - Start')
+    KnnRegressor = KNeighborsRegressor(n_neighbors=10)
+    for i in range(N_ZONES):
+        KnnRegressor.fit(Xs[i][0], Ys[i])
+        Y_test.append(KnnRegressor.predict(Xs[i][1]))
+    if does_print:
+        print('KNN - End')
+        print('Y_test : Y_test.length =', len(Y_test))
+        print(Y_test[0])
+        print(Ys[1])
 
     # Example: predict global training mean for each zone
     means = np.zeros(N_ZONES)
+    means_prediction = np.zeros(N_ZONES)
     for i in range(N_ZONES):
         means[i] = Ys[i]['TARGETVAR'].mean()
+        means_prediction[i] = np.mean(Y_test[i])
+    if does_print:
+        print('means =', means)
+        print('means_prediction =', means_prediction)
 
     # Write submission files (1 per zone). The predicted test series must
     # follow the order of X_test.
     for i in range(N_ZONES):
         Y_test = pd.Series(means[i], index=range(len(Xs[i][1])), name='TARGETVAR')
         Y_test.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
+    if does_print:
+        print('Write submission files')
