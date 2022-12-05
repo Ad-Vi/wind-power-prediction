@@ -65,7 +65,7 @@ if __name__ == '__main__':
     # KNN -------------------------------------
     if does_print:
         print('KNN - Start')
-    KnnRegressor = KNeighborsRegressor(n_neighbors=10)
+    KnnRegressor = KNeighborsRegressor(n_neighbors=100)
     for i in range(N_ZONES):
         KnnRegressor.fit(Xs[i][0], Ys[i]['TARGETVAR'])
         Ys[i] = (Ys[i], KnnRegressor.predict(Xs[i][1]))
@@ -73,7 +73,7 @@ if __name__ == '__main__':
         print('KNN - End')
         print('Ytrain : Ys[0][0] = \n', Ys[0][0])
         print('Ytest : Ys[0][1] = \n', Ys[0][1])
-        print('Ytest length : Ys[0][1].shape = ', Ys[0][1].shape)
+        print('\nYtest length : Ys[0][1].shape = ', Ys[0][1].shape)
 
     # Example: predict global training mean for each zone
     means = np.zeros(N_ZONES)
@@ -82,8 +82,8 @@ if __name__ == '__main__':
         means[i] = Ys[i][0]['TARGETVAR'].mean()
         means_prediction[i] = Ys[i][1].mean()
     if does_print:
-        print('means =', means)
-        print('means_prediction =', means_prediction)
+        print('\nmeans =', means)
+        print('\nmeans_prediction =', means_prediction)
 
     # Write submission files (1 per zone). The predicted test series must
     # follow the order of X_test.
