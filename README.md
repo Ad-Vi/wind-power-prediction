@@ -2,7 +2,7 @@
 The project must be carried out by groups of at most three students. See below for the deadlines.
 
 ## Statement
-###Objective and data
+### Objective and data
 The goal of the competition is to design a model to predict wind power 24h ahead in 10 zones, corresponding to 10 wind farms located in Australia (exact location is unknown). The data to train and test your model is given in the form of two files per zone (X_Zone_i.csv and Y_Zone_i.csv) that contain both different variables measured every hour from 1/01/2012 at 1am until 1/01/2014 at 0am (ie., 24 months, 17544 measurements).
 
 The files X_Zone_i.csv, contain the following columns:
@@ -32,7 +32,7 @@ From 30/11/2013 1am to 7/12/2013 0am
 From 28/12/2013 1am to 1/01/2014 0am (this week is incomplete)
 In terms of time points, this means you have a training set of size 14760 and a test set of size 2784, for each zone.
 
-###Challenge and metric
+### Challenge and metric
 To participate to the challenge, you will have to submit on gradescope 10 files, one per zone, containing each your predictions for the missing values in the corresponding Y_Zone_i.csv file. The files to be submitted need to be named Y_pred_Zone_i.csv (with i the zone number) and contain a single column with the predicted values ordered chronologically (i.e. 2784 values), with TARGETVAR as the column header. The file submission.py provided with the data loads the data and produce prediction files in the right format (corresponding to constant predictions). Feel free to submit these prediction files to familiarize yourself with the platform.
 
 To rank your predictions, we will use the absolute error, i.e. the absolute difference between your prediction and the true value averaged over all zones and time points. During the challenge period, the leaderboard on Gradescope (Assigment: Project 3 - Challenge) will show two scores:
@@ -42,7 +42,7 @@ These two scores will be based only on a subset of the days you need to fill in.
 
 When the challenge will be over, your MAE scores averaged over all zones and over all days that were not used to compute the scores during the challenge period will be used to produce the final ranking of your submissions.
 
-###Report
+### Report
 By December 11th, you should have submitted your code and a written report on the Gradescope platform (Assignement: Project 3 - Report). Your report should describe the different steps of your approach and your (main) results.
 
 In particular, the report must contain:
