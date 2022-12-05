@@ -62,6 +62,7 @@ if __name__ == '__main__':
         print('Xtest : Xs[0][1].shape =', Xs[0][1].shape)
     # Fit your models here
     # ...
+    
     # KNN -------------------------------------
     if does_print:
         print('KNN - Start')
@@ -71,9 +72,6 @@ if __name__ == '__main__':
         Ys[i] = (Ys[i], KnnRegressor.predict(Xs[i][1]))
     if does_print:
         print('KNN - End')
-        print('Ytrain : Ys[0][0] = \n', Ys[0][0])
-        print('Ytest : Ys[0][1] = \n', Ys[0][1])
-        print('\nYtest length : Ys[0][1].shape = ', Ys[0][1].shape)
 
     # Example: predict global training mean for each zone
     means = np.zeros(N_ZONES)
