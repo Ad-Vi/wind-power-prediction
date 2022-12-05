@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 from sklearn.neighbors import KNeighborsRegressor
+from sklearn.ensemble import BaggingRegressor
 
 
 def split_train_test(X, Y):
@@ -37,7 +38,7 @@ def split_train_test(X, Y):
 if __name__ == '__main__':
 
     flatten = True
-    does_print = True
+    does_print = False
     N_ZONES = 10
     X_format = 'data/X_Zone_{i}.csv'
     Y_format = 'data/Y_Zone_{i}.csv'
@@ -63,15 +64,16 @@ if __name__ == '__main__':
     # Fit your models here
     # ...
     
-    # KNN -------------------------------------
+    # bagging KNN -------------------------------------
     if does_print:
-        print('KNN - Start')
+        print('bagging KNN - Start')
     KnnRegressor = KNeighborsRegressor(n_neighbors=100)
+    bagging = BaggingRegressor(KnnRegressor, n_estimators=10)
     for i in range(N_ZONES):
-        KnnRegressor.fit(Xs[i][0], Ys[i]['TARGETVAR'])
-        Ys[i] = (Ys[i], KnnRegressor.predict(Xs[i][1]))
+        bagging.fit(Xs[i][0], Ys[i]['TARGETVAR'])
+        Ys[i] = (Ys[i], bagging.predict(Xs[i][1]))
     if does_print:
-        print('KNN - End')
+        print('bagging KNN - End')
 
     # Example: predict global training mean for each zone
     means = np.zeros(N_ZONES)
