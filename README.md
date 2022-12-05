@@ -1,7 +1,6 @@
 # wind-power-prediction
 
-This is a project given in the context of Introduction To Machine Learning course of the University of Liège 
-https://www.programmes.uliege.be/cocoon/20222023/cours/ELEN0062-1.html
+This is a project given in the context of [Introduction To Machine Learning course of the University of Liège](https://www.programmes.uliege.be/cocoon/20222023/cours/ELEN0062-1.html)
 ## Statement
 
 The project must be carried out by groups of at most three students. See below for the deadlines.
