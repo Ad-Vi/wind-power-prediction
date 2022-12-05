@@ -1,7 +1,10 @@
 # wind-power-prediction
-The project must be carried out by groups of at most three students. See below for the deadlines.
 
+This is a project given in the context of Introduction To Machine Learning course of the University of Liège 
+https://www.programmes.uliege.be/cocoon/20222023/cours/ELEN0062-1.html
 ## Statement
+
+The project must be carried out by groups of at most three students. See below for the deadlines.
 ### Objective and data
 The goal of the competition is to design a model to predict wind power 24h ahead in 10 zones, corresponding to 10 wind farms located in Australia (exact location is unknown). The data to train and test your model is given in the form of two files per zone (X_Zone_i.csv and Y_Zone_i.csv) that contain both different variables measured every hour from 1/01/2012 at 1am until 1/01/2014 at 0am (ie., 24 months, 17544 measurements).
 
