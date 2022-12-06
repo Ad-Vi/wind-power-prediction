@@ -1,8 +1,10 @@
 import os
 import numpy as np
 import pandas as pd
+import time
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import BaggingRegressor
+from sklearn.ensemble import RandomForestRegressor
 
 
 def split_train_test(X, Y):
@@ -38,7 +40,7 @@ def split_train_test(X, Y):
 if __name__ == '__main__':
 
     flatten = True
-    does_print = False
+    does_print = True
     N_ZONES = 10
     X_format = 'data/X_Zone_{i}.csv'
     Y_format = 'data/Y_Zone_{i}.csv'
@@ -65,15 +67,15 @@ if __name__ == '__main__':
     # ...
     
     # bagging KNN -------------------------------------
+    start = time.time()
     if does_print:
-        print('bagging KNN - Start')
-    KnnRegressor = KNeighborsRegressor(n_neighbors=100)
-    bagging = BaggingRegressor(KnnRegressor, n_estimators=10)
+        print('Random Forest - Start')
+    regressor = RandomForestRegressor(n_estimators=100)
     for i in range(N_ZONES):
-        bagging.fit(Xs[i][0], Ys[i]['TARGETVAR'])
-        Ys[i] = (Ys[i], bagging.predict(Xs[i][1]))
+        regressor.fit(Xs[i][0], Ys[i]['TARGETVAR'])
+        Ys[i] = (Ys[i], regressor.predict(Xs[i][1]))
     if does_print:
-        print('bagging KNN - End')
+        print('Random Forest - End : ' + str(time.time() - start) + 'seconds')
 
     # Example: predict global training mean for each zone
     means = np.zeros(N_ZONES)
