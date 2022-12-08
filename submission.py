@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import time
+from argparse import ArgumentParser
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.neighbors import KNeighborsRegressor
@@ -29,32 +30,28 @@ def split_train_test(X, Y):
         The training set of input samples.
     - Y_train: df of output values
         The training set of corresponding output values.
-    - X_test: df of input features
+    - X_predict: df of input features
         The testing set of input samples. The corresponding output values are
         the ones you should predict.
     """
 
     X_train = X[Y['TARGETVAR'] != -1]
     Y_train = Y[Y['TARGETVAR'] != -1]
-    X_test = X[Y['TARGETVAR'] == -1]
-    return X_train, X_test, Y_train
+    X_predict = X[Y['TARGETVAR'] == -1]
+    return X_train, X_predict, Y_train
 
-def feature_selection(data, does_print = True):
-    if does_print:
-        to_print = ""
-        print('Feature selection')
-        for col in data.columns:
-            to_print+=str(col)+", "
-        print('initial features :', to_print+'\n')
-    selector = VarianceThreshold(threshold = 1e-6)
-    selected_features_data = selector.fit_transform(data)
-    if does_print:
-        # to_print = ""
-        # for col in selected_features_data.columns:
-        #     to_print+=str(col)+", "
-        # print('selected features :', to_print)
-        print(selected_features_data)
-    return selected_features_data
+def expected_error(regressor, X_test, Y_test):
+    E = 0
+    test_size = len(Y_test)
+    predictions = np.zeros(test_size)
+    # Compute average over all learning sets
+    predictions = regressor.predict(X_test)
+    E = np.mean((Y_test - predictions) ** 2) # mean squared error
+    return E
+
+def feature_selection(data, does_print = False):
+    # return variance_treshold_feature_selection(data, does_print=does_print)
+    return data
 
 def variance_treshold_feature_selection(data, treshold=1e-6, does_print=False):
     data_copy = data.copy()
@@ -80,9 +77,23 @@ def variance_treshold_feature_selection(data, treshold=1e-6, does_print=False):
     return data_copy
 
 if __name__ == '__main__':
+    # Parse arguments
+    parser = ArgumentParser()
+    # Print : whether information are printed during the computing or not
+    parser.add_argument('-d', '--display', type=lambda x: (str(x).lower() == 'true'), default=False, help='print or not information while computing. Default : False')
+    # Test size : proportion of the data used to test our model. By default nul.
+    parser.add_argument('-t', '--test_size', type=float, default=0, help='proportion of the data used for test. Default : 0')
 
+    mode = "full learn"
+    # Argument values
+    args = parser.parse_args()
+    does_print = args.display
+    test_size = args.test_size
+    if test_size != 0:
+        test_size = args.test_size
+        mode = "learn and test"
+    
     flatten = True
-    does_print = False
     N_ZONES = 10
     X_format = 'data/X_Zone_{i}.csv'
     Y_format = 'data/Y_Zone_{i}.csv'
@@ -90,24 +101,41 @@ if __name__ == '__main__':
     os.makedirs('submissions', exist_ok=True)
 
     # Read input and output files (1 per zone)
-    Xs, Ys = [], []
+    # Xs : input values ; Ys : output values ; Ts : testing values ; Ms : Moments (E)
+    Xs, Ys, Ts, Ms = [], [], [], []
     for i in range(N_ZONES):
         if does_print:
             print("--Read files for zone "+str(i)+"--")
-        Xs.append(variance_treshold_feature_selection(pd.read_csv(X_format.format(i=i+1)), does_print=does_print))
-        Ys.append(variance_treshold_feature_selection(pd.read_csv(Y_format.format(i=i+1)), does_print=does_print))
+        Xs.append(feature_selection(pd.read_csv(X_format.format(i=i+1)), does_print=does_print))
+        Ys.append(feature_selection(pd.read_csv(Y_format.format(i=i+1)), does_print=does_print))
+        Ts.append(None)
         # Flatten temporal dimension (NOTE: this step is not compulsory)
         if flatten:
-            X_train, X_test, Y_train = split_train_test(Xs[i], Ys[i])           
-            Xs[i] = (X_train, X_test)
+            X_train_test, X_predict, Y_train_test = split_train_test(Xs[i], Ys[i])  
+            if mode == "full learn":
+                X_train = X_train_test
+                Y_train = Y_train_test
+            else:
+                n_samples = X_train_test.shape[0]
+                testing_size = int(0.1*n_samples)
+                learn_size = n_samples - testing_size
+                X_train = X_train_test[0:learn_size]
+                X_test = X_train_test[learn_size: n_samples]
+                Y_train = Y_train_test[0:learn_size]
+                Y_test = Y_train_test[learn_size: n_samples]
+                Ts[i] = (X_test, Y_test['TARGETVAR'])
+            Xs[i] = (X_train, X_predict)
             Ys[i] = Y_train
     if does_print:
         print('Read input and output files\n')
-        print('Xtrain : Xs[0][0].shape =', Xs[0][0].shape)
-        print('Ytrain : Ys[0].shape =', Ys[0].shape)
-        print('Xtest : Xs[0][1].shape =', Xs[0][1].shape)
+        print('X_train : Xs[0][0].shape =', Xs[0][0].shape)
+        print('Y_train : Ys[0].shape =', Ys[0].shape)
+        print('X_predict : Xs[0][1].shape =', Xs[0][1].shape)
+        if mode == "learn and test":
+            print('X_test : Ts[0][0].shape =', Ts[0][0].shape)
+            print('Y_test : Ts[0][1].shape =', Ts[0][1].shape)
+            print('len(Y_test) = ', len(Ts[0][1]))
     # Fit your models here
-    # ...
     
     # Learning algorithm -------------------------------------
     start = time.time()
@@ -122,6 +150,13 @@ if __name__ == '__main__':
         if does_print:
             print("Predict Zone ", i)
         Ys[i] = (Ys[i], regressor.predict(Xs[i][1]))
+    if mode == "learn and test":
+        for i in range(N_ZONES):
+            E = expected_error(regressor, Ts[i][0], Ts[i][1])
+            Ms.append(E)
+            if does_print:
+                print("Expected error Zone ", i, " : ", E)
+        
     if does_print:
         print('Random Forest - End : ' + str(time.time() - start) + 'seconds')
 
@@ -136,9 +171,9 @@ if __name__ == '__main__':
         print('\nmeans_prediction =', means_prediction)
 
     # Write submission files (1 per zone). The predicted test series must
-    # follow the order of X_test.
+    # follow the order of X_predict.
     for i in range(N_ZONES):
-        Y_test = pd.Series(Ys[i][1], index=range(len(Xs[i][1])), name='TARGETVAR')
-        Y_test.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
+        Y_predict = pd.Series(Ys[i][1], index=range(len(Xs[i][1])), name='TARGETVAR')
+        Y_predict.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
     if does_print:
         print('Write submission files')

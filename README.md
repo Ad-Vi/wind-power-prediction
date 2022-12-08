@@ -14,3 +14,7 @@ A contest is held between the students on gradescope and the goal is to have the
 |23        | ʕ•ᴥ•ʔ         | 0.19589805746468192   |0.17604443622797977  |  10 bagging kNN with k = 100 | |
 |13        | ʕ•ᴥ•ʔ         | 0.18537202141293346   |0.14236585017869863  |  Random forest 100 trees     | 169.53|
 |29        | should be shitty| 0.20496786870346928 | 0.1665694056025948 | RF, 100 trees, with univariate Feature extraction | 85.4989275932312 |
+
+## References
+
+<https://vishalramesh.substack.com/p/feature-selection-correlation-and-p-value-da8921bfb3cf?s=w>
