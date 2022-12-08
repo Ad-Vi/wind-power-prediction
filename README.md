@@ -13,3 +13,4 @@ A contest is held between the students on gradescope and the goal is to have the
 |22        | ʕ•ᴥ•ʔ         | 0.19558727990167069   |0.17447651350699664  |  kNN with k = 100            | |
 |23        | ʕ•ᴥ•ʔ         | 0.19589805746468192   |0.17604443622797977  |  10 bagging kNN with k = 100 | |
 |13        | ʕ•ᴥ•ʔ         | 0.18537202141293346   |0.14236585017869863  |  Random forest 100 trees     | 169.53|
+|29        | should be shitty| 0.20496786870346928 | 0.1665694056025948 | RF, 100 trees, with univariate Feature extraction | 85.4989275932312 |

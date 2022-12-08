@@ -1,0 +1,353 @@
+python3 submission.py
+--Read files for zone 0--
+  Initial features :
+Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID     0.000000
+U10        6.542232
+V10        8.441275
+U100      18.163515
+V100      25.039771
+Day       77.513439
+Month     11.900080
+Year       0.250128
+Hour      47.919398
+dtype: float64
+  Selected features :       
+Index(['U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+  Initial features :
+Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')      
+  Variances :
+ZONEID        0.000000      
+TARGETVAR     0.295006      
+Day          77.513439      
+Month        11.900080      
+Year          0.250128      
+Hour         47.919398      
+dtype: float64
+  Selected features :       
+Index(['TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+--Read files for zone 1--   
+  Initial features :
+Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID     0.000000
+U10        7.403120
+V10       10.865428
+U100      19.173624
+V100      27.062119
+Day       77.513439
+Month     11.900080
+Year       0.250128
+Hour      47.919398
+dtype: float64
+  Selected features :       
+Index(['U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+  Initial features :
+Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')      
+  Variances :
+ZONEID        0.000000      
+TARGETVAR     0.288584      
+Day          77.513439      
+Month        11.900080      
+Year          0.250128      
+Hour         47.919398      
+dtype: float64
+  Selected features :       
+Index(['TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+--Read files for zone 2--   
+  Initial features :
+Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID     0.000000
+U10       12.422990
+V10        9.473081
+U100      29.013841
+V100      23.983495
+Day       77.513439
+Month     11.900080
+Year       0.250128
+Hour      47.919398
+dtype: float64
+  Selected features :       
+Index(['U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+  Initial features :
+Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')      
+  Variances :
+ZONEID        0.000000      
+TARGETVAR     0.369903      
+Day          77.513439      
+Month        11.900080      
+Year          0.250128      
+Hour         47.919398      
+dtype: float64
+  Selected features :       
+Index(['TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+--Read files for zone 3--   
+  Initial features :
+Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID     0.000000
+U10        6.210131
+V10        8.867917
+U100      17.649314
+V100      25.884065
+Day       77.513439
+Month     11.900080
+Year       0.250128
+Hour      47.919398
+dtype: float64
+  Selected features :       
+Index(['U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+  Initial features :        
+Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')      
+  Variances :
+ZONEID        0.000000      
+TARGETVAR     0.291542      
+Day          77.513439      
+Month        11.900080      
+Year          0.250128      
+Hour         47.919398      
+dtype: float64
+  Selected features :       
+Index(['TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+--Read files for zone 4--   
+  Initial features :
+Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID     0.000000
+U10        9.572251
+V10        9.947774
+U100      25.254407
+V100      27.640226
+Day       77.513439
+Month     11.900080
+Year       0.250128
+Hour      47.919398
+dtype: float64
+  Selected features :       
+Index(['U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+  Initial features :        
+Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')      
+  Variances :
+ZONEID        0.000000      
+TARGETVAR     0.284485      
+Day          77.513439      
+Month        11.900080      
+Year          0.250128      
+Hour         47.919398      
+dtype: float64
+  Selected features :       
+Index(['TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+--Read files for zone 5--
+  Initial features :
+Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID     0.000000
+U10       12.368775
+V10        8.434656
+U100      29.115927
+V100      22.054530
+Day       77.513439
+Month     11.900080
+Year       0.250128
+Hour      47.919398
+dtype: float64
+  Selected features :       
+Index(['U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+  Initial features :
+Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')      
+  Variances :
+ZONEID        0.000000      
+TARGETVAR     0.336166      
+Day          77.513439      
+Month        11.900080      
+Year          0.250128      
+Hour         47.919398      
+dtype: float64
+  Selected features :       
+Index(['TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+--Read files for zone 6--
+  Initial features :
+Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID     0.000000
+U10        9.572251
+V10        9.947774
+U100      25.254407
+V100      27.640226
+Day       77.513439
+Month     11.900080
+Year       0.250128
+Hour      47.919398
+dtype: float64
+  Selected features :       
+Index(['U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+  Initial features :        
+Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')      
+  Variances :
+ZONEID        0.000000      
+TARGETVAR     0.287783      
+Day          77.513439      
+Month        11.900080      
+Year          0.250128      
+Hour         47.919398      
+dtype: float64
+  Selected features :       
+Index(['TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+--Read files for zone 7--   
+  Initial features :
+Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID     0.000000
+U10        7.821875
+V10       10.644799
+U100      18.972075
+V100      27.081833
+Day       77.513439
+Month     11.900080
+Year       0.250128
+Hour      47.919398
+dtype: float64
+  Selected features :       
+Index(['U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+  Initial features :
+Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')      
+  Variances :
+ZONEID        0.000000      
+TARGETVAR     0.381423      
+Day          77.513439      
+Month        11.900080      
+Year          0.250128      
+Hour         47.919398      
+dtype: float64
+  Selected features :       
+Index(['TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+--Read files for zone 8--   
+  Initial features :
+Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID     0.000000
+U10        6.955911
+V10       10.665359
+U100      18.297899
+V100      29.593660
+Day       77.513439
+Month     11.900080
+Year       0.250128
+Hour      47.919398
+dtype: float64
+  Selected features :       
+Index(['U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+  Initial features :        
+Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')      
+  Variances :
+ZONEID        0.000000      
+TARGETVAR     0.340118      
+Day          77.513439      
+Month        11.900080      
+Year          0.250128      
+Hour         47.919398      
+dtype: float64
+  Selected features :       
+Index(['TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Removed features :        
+['ZONEID']
+--Read files for zone 9--
+  Initial features :
+Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID     0.000000
+U10       12.368775
+V10        8.434656
+U100      29.115927
+V100      22.054530
+Day       77.513439
+Month     11.900080
+Year       0.250128
+Hour      47.919398
+dtype: float64
+  Selected features :
+Index(['U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')       'object')
+  Removed features :
+['ZONEID']
+  Initial features :                                                        ')
+Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+  Variances :
+ZONEID        0.000000
+TARGETVAR     0.365095
+Day          77.513439
+Month        11.900080
+Year          0.250128
+Hour         47.919398
+dtype: float64
+  Selected features :
+Index(['TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')        
+  Removed features :
+
+Xtrain : Xs[0][0].shape = (14760, 8)
+Ytrain : Ys[0].shape = (14760, 5)
+Xtest : Xs[0][1].shape = (2784, 8)
+Random Forest - Start
+Fit Zone  0
+Fit Zone  1
+Fit Zone  2
+Fit Zone  3
+Fit Zone  4
+Fit Zone  5
+Fit Zone  6
+Fit Zone  7
+Fit Zone  8
+Fit Zone  9
+Predict Zone  0
+Predict Zone  1
+Predict Zone  2
+Predict Zone  3
+Predict Zone  4
+Predict Zone  5
+Predict Zone  6
+Predict Zone  7
+Predict Zone  8
+Predict Zone  9
+Random Forest - End : 85.4989275932312seconds
+
+means = [0.29993232 0.31628527 0.43317948 0.29272088 0.29965744 0.35187066
+ 0.29644143 0.45823831 0.40834484 0.42562782]         .29965744 0.35187066  
+
+means_prediction = [0.39574724 0.42642543 0.4406498  0.4081902  0.4564144  0.43674714                       .4081902  0.4564144  0
+ 0.4564144  0.41056734 0.42749324 0.43674714]
+Write submission files
