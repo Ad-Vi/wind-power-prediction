@@ -169,15 +169,18 @@ if __name__ == '__main__':
     start = time.time()
     if does_print:
         print('Random Forest - Start')
-    regressor = RandomForestRegressor(n_estimators=100)
+    regressor = RandomForestRegressor(n_estimators=500)
+    t = time.time()
     for i in range(N_ZONES):
-        if does_print:
-            print("Fit Zone ", i)
         regressor.fit(Xs[i][0], Ys[i]['TARGETVAR'])
-    for i in range(N_ZONES):
         if does_print:
-            print("Predict Zone ", i)
+            print("Fit Zone ", i, " | Time :", str(time.time()-t))
+        t = time.time()
+    for i in range(N_ZONES):
         Ys[i] = (Ys[i], regressor.predict(Xs[i][1]))
+        if does_print:
+            print("Predict Zone ", i, " | Time :", str(time.time()-t))
+        t = time.time()
     if mode == "learn and test":
         for i in range(N_ZONES):
             E = expected_error(regressor, Ts[i][0], Ts[i][1])

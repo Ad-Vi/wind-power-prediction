@@ -16,6 +16,7 @@ A contest is held between the students on gradescope and the goal is to have the
 |29        | should be shitty| 0.20496786870346928 | 0.1665694056025948 | RF, 100 trees, with univariate Feature extraction | 85.4989275932312 | |
 | 38 | ʕ•ᴥ•ʔ | 0.21508922377477843 | 0.1813066592111945 | RF, 100 trees, test 10%, correlation FE | 46.81495785713196 |5.247 |
 | 35 | ʕ•ᴥ•ʔ | 0.20947656094651754 | 0.17472517235573073 | RF, 100 trees, correlation FE | 49.90913796424866 | |
+|38 | ʕ•ᴥ•ʔ |0.2138090495818373 | 0.17895749096035105 | RF, 500 trees, test 10%, correlation FE | 244.5769236087799 | 5.1641 |
 
 ## References
 
