@@ -13,15 +13,15 @@ A contest is held between the students on gradescope and the goal is to have the
 |22        | ʕ•ᴥ•ʔ         | 0.19558727990167069   |0.17447651350699664  |  kNN with k = 100            | | |
 |23        | ʕ•ᴥ•ʔ         | 0.19589805746468192   |0.17604443622797977  |  10 bagging kNN with k = 100 | | |
 |13        | ʕ•ᴥ•ʔ         | 0.18537202141293346   |0.14236585017869863  |  Random forest 100 trees     | 169.53| |
-|29        | should be shitty| 0.20496786870346928 | 0.1665694056025948 | RF, 100 trees, with univariate Feature extraction | 85.4989275932312 | |
-| 38 | ʕ•ᴥ•ʔ | 0.21508922377477843 | 0.1813066592111945 | RF, 100 trees, test 10%, correlation FE | 46.81495785713196 |5.247 |
-| 35 | ʕ•ᴥ•ʔ | 0.20947656094651754 | 0.17472517235573073 | RF, 100 trees, correlation FE | 49.90913796424866 | |
-|38 | ʕ•ᴥ•ʔ |0.2138090495818373 | 0.17895749096035105 | RF, 500 trees, test 10%, correlation FE | 244.5769236087799 | 5.1641 |
+|29        | should be shitty| 0.20496786870346928 | 0.1665694056025948 | RF, 100 trees, with univariate Feature extraction | 85.498 | |
+| 38 | ʕ•ᴥ•ʔ | 0.21508922377477843 | 0.1813066592111945 | RF, 100 trees, test 10%, correlation FE | 46.8149 |5.247 |
+| 35 | ʕ•ᴥ•ʔ | 0.20947656094651754 | 0.17472517235573073 | RF, 100 trees, correlation FE | 49.909 | |
+|38 | ʕ•ᴥ•ʔ |0.2138090495818373 | 0.17895749096035105 | RF, 500 trees, test 10%, correlation FE | 244.576 | 5.1641 |
 |36 | ʕ•ᴥ•ʔ | 0.20955215554930665 | 0.172885499857228 |RF, 500 trees, test 10% | 346.45 | 5.15 |
 |35 | ʕ•ᴥ•ʔ | 0.20488767291036022 | 0.16671282241238644 | RF, 500 trees | 404.994 | |
 |27 |ʕ•ᴥ•ʔ ʕ•ᴥ•ʔ|0.1855171110453776|0.14418710077268204 | RF, 500 trees regressor on all zones |  704.69 | |
 |41|ʕ•ᴥ•ʔ|0.24377415359099888|0.23252893098076502| epsSVR, rbf kernel, test 10% | 1015.973 |  7.753 |
 
 ## References
-
+<https://scikit-learn.org/stable/supervised_learning.html#supervised-learning>  
 <https://vishalramesh.substack.com/p/feature-selection-correlation-and-p-value-da8921bfb3cf?s=w>
