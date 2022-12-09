@@ -95,10 +95,10 @@ def correlation_feature_extraction(data, treshold=0.9, does_print=False):
             feature_to_print += feature + ' (corr = ' + str(correlation) + ' with '+str(feature2)+'), '
     if does_print:
         print('Removed features (with correlation >=', treshold, ') : ', feature_to_print)
-        corr.to_csv("correlation.csv", float_format='%.6f')
+        corr.to_csv("useless/correlation.csv", float_format='%.6f')
         plt.plot
         sns.heatmap(corr)
-        plt.savefig('correlation.png')
+        plt.savefig('useless/correlation.png')
     return data_copy
         
 

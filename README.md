@@ -15,6 +15,7 @@ A contest is held between the students on gradescope and the goal is to have the
 |13        | ʕ•ᴥ•ʔ         | 0.18537202141293346   |0.14236585017869863  |  Random forest 100 trees     | 169.53| |
 |29        | should be shitty| 0.20496786870346928 | 0.1665694056025948 | RF, 100 trees, with univariate Feature extraction | 85.4989275932312 | |
 | 38 | ʕ•ᴥ•ʔ | 0.21508922377477843 | 0.1813066592111945 | RF, 100 trees, test 10%, correlation FE | 46.81495785713196 |5.247 |
+| 35 | ʕ•ᴥ•ʔ | 0.20947656094651754 | 0.17472517235573073 | RF, 100 trees, correlation FE | 49.90913796424866 | |
 
 ## References
 

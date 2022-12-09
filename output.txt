@@ -1,72 +1,75 @@
-python3 submission.py -d true -t 0.1
+python3 submission.py -d true
 --Read files for zone 0--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 
-0.9798767929306834 with U10), V100 (corr = 0.9795806522266491 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9798767929306834 with U10), V100 (corr = 0.9795806522266491 
+with V10),
 Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
+'Year', 'Hour'], dtype='object')
 --Read files for zone 1--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 
-0.9804381822084728 with U10), V100 (corr = 0.982455155189887 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9804381822084728 with U10), V100 (corr = 0.982455155189887 with V10),
 Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
+'Year', 'Hour'], dtype='object')
 --Read files for zone 2--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 
-0.9848346753178652 with U10), V100 (corr = 0.9848182696299067 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9848346753178652 with U10), V100 (corr = 0.9848182696299067 
+with V10),
 Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
+'Year', 'Hour'], dtype='object')
 --Read files for zone 3--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 
-0.9774928276294482 with U10), V100 (corr = 0.9805841832748018 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9774928276294482 with U10), V100 (corr = 0.9805841832748018 
+with V10),
 Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
+'Year', 'Hour'], dtype='object')
 --Read files for zone 4--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 
-0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 
+with V10),
 Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
+'Year', 'Hour'], dtype='object')
 --Read files for zone 5--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 
-0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10),
 Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
+'Year', 'Hour'], dtype='object')
 --Read files for zone 6--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 
-0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 
+with V10),
 Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
+'Year', 'Hour'], dtype='object')
 --Read files for zone 7--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 
-0.9800736945509834 with U10), V100 (corr = 0.9813904528317128 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9800736945509834 with U10), V100 (corr = 0.9813904528317128 
+with V10),
 Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
+'Year', 'Hour'], dtype='object')
 --Read files for zone 8--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 
-0.980615047817854 with U10), V100 (corr = 0.9811444594399613 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.980615047817854 with U10), V100 (corr = 0.9811444594399613 with V10),
 Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
+'Year', 'Hour'], dtype='object')
 --Read files for zone 9--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 
-0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10),
 Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Removed features (with correlation >= 0.9 ) :
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
+'Year', 'Hour'], dtype='object')
 Read input and output files
 
-X_train : Xs[0][0].shape = (13284, 7)
-Y_train : Ys[0].shape = (13284, 6)
+X_train : Xs[0][0].shape = (14760, 7)
+Y_train : Ys[0].shape = (14760, 6)
 X_predict : Xs[0][1].shape = (2784, 7)
-X_test : Ts[0][0].shape = (1476, 7)
-Y_test : Ts[0][1].shape = (1476,)
-len(Y_test) =  1476
 Random Forest - Start
 Fit Zone  0
 Fit Zone  1
@@ -88,21 +91,11 @@ Predict Zone  6
 Predict Zone  7
 Predict Zone  8
 Predict Zone  9
-Expected error Zone  0  :  0.05329319262294998
-Expected error Zone  1  :  0.07126239938370797
-Expected error Zone  2  :  0.04977656099250265
-Expected error Zone  3  :  0.05422215799796809
-Expected error Zone  4  :  0.049394207862204526
-Expected error Zone  5  :  0.04436758827189358
-Expected error Zone  6  :  0.05766994687083873
-Expected error Zone  7  :  0.05611052571909199
-Expected error Zone  8  :  0.05171161122259403
-Expected error Zone  9  :  0.03697363775784438
-Mean expected error :  0.0005247818287015959  %
-Random Forest - End : 46.81495785713196seconds
+Random Forest - End : 49.90913796424866 seconds
 
-means = [0.30119341 0.31868576 0.43928306 0.29203384 0.30028048 0.3569000348 0.35690003
- 0.29652535 0.45448792 0.40477647 0.43168207]
-                                                             69 0.4376161  0.4421249      
-means_prediction = [0.3730788  0.42584782 0.45669603 0.37947469 0.4376161  0.4421249                                      tion$ 
- 0.4376161  0.41783816 0.40063634 0.4421249 ]
+means = [0.29993232 0.31628527 0.43317948 0.29272088 0.29965744 0.35187066
+ 0.29644143 0.45823831 0.40834484 0.42562782]
+
+means_prediction = [0.36538506 0.41928564 0.45042912 0.37434455 0.43081953 0.43716608
+ 0.43081953 0.40752028 0.39671507 0.43716608]
+Write submission files
