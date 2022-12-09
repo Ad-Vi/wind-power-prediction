@@ -51,7 +51,8 @@ def expected_error(regressor, X_test, Y_test):
 
 def feature_selection(data, does_print = False):
     # return variance_treshold_feature_selection(data, does_print=does_print)
-    return data
+    return correlation_feature_extraction(data, does_print=does_print)
+    # return data
 
 def variance_treshold_feature_selection(data, treshold=1e-6, does_print=False):
     data_copy = data.copy()
@@ -75,6 +76,31 @@ def variance_treshold_feature_selection(data, treshold=1e-6, does_print=False):
             print("  No features removed. Features :")
             print(data_copy.columns)
     return data_copy
+
+def correlation_feature_extraction(data, treshold=0.9, does_print=False):
+    corr = data.corr()
+    remove, removed = [], []
+    feature_to_print = ''
+    data_copy = data.copy()
+    for i in range(len(data_copy.columns)):
+        for j in range(i+1, len(data_copy.columns)):
+            if corr.iloc[i,j] >= treshold:
+                if data.columns[j+1] not in remove:
+                    remove += [(data.columns[j], corr.iloc[i,j], data.columns[i])]
+    for r in remove:
+        feature, correlation, feature2 = r
+        if feature != 'TARGETVAR' and feature not in removed:
+            removed +=[feature]
+            data_copy.drop(feature, axis=1, inplace=True)
+            feature_to_print += feature + ' (corr = ' + str(correlation) + ' with '+str(feature2)+'), '
+    if does_print:
+        print('Removed features (with correlation >=', treshold, ') : ', feature_to_print)
+        corr.to_csv("correlation.csv", float_format='%.6f')
+        plt.plot
+        sns.heatmap(corr)
+        plt.savefig('correlation.png')
+    return data_copy
+        
 
 if __name__ == '__main__':
     # Parse arguments
@@ -107,8 +133,10 @@ if __name__ == '__main__':
         if does_print:
             print("--Read files for zone "+str(i)+"--")
         Xs.append(feature_selection(pd.read_csv(X_format.format(i=i+1)), does_print=does_print))
+        print('Xs[i].columns ', Xs[i].columns)
         Ys.append(feature_selection(pd.read_csv(Y_format.format(i=i+1)), does_print=does_print))
         Ts.append(None)
+        print('Ys[i].columns ', Ys[i].columns)
         # Flatten temporal dimension (NOTE: this step is not compulsory)
         if flatten:
             X_train_test, X_predict, Y_train_test = split_train_test(Xs[i], Ys[i])  
@@ -156,9 +184,10 @@ if __name__ == '__main__':
             Ms.append(E)
             if does_print:
                 print("Expected error Zone ", i, " : ", E)
+        print("Mean expected error : ", np.mean(Ms)*100, " %")
         
     if does_print:
-        print('Random Forest - End : ' + str(time.time() - start) + 'seconds')
+        print('Random Forest - End : ' + str(time.time() - start) + ' seconds')
 
     # Example: predict global training mean for each zone
     means = np.zeros(N_ZONES)
