@@ -4,7 +4,27 @@ This is a project given in the context of [Introduction To Machine Learning cour
 This project is about predicting the wind power production of a wind farm in Australia. A dataset is given over 10 zones and the goal is to predict the power production of the wind farm for the next 24 hours in those 10 zones.  
 A contest is held between the students on gradescope and the goal is to have the smaller error possible. The error is calculated using the mean absolute error (MAE) between the predicted and the real values over all the zones - *MAE_GLOB* - and on zone one only -*MAE_Z1*- .
 
-## Tries on gradescope
+## Run the code
+
+The code is located in the file `submission.py`. It performs the following steps:
+
+1. Load the data
+2. Perform or not feature extraction
+3. Split the data
+4. Train the model
+5. Predict the values
+6. Calculate the error
+7. Write the predictions in submission files
+
+**Usage**:
+Run it with python3 with the following parameters.
+
+| Parameter   | Short name  | Description | Values | Default |
+| ----------- | ----------- | ----------- | ----------- | --------- |
+| `--display` | `-d` | Whether information are print in the terminal during the computing | Boolean | False |
+| `--test_size` | `-t` | Proportion of the data used to test our model | float | 0.0 |
+
+## Submissions on gradescope
 
 Before the submission ʕ•ᴥ•ʔ ʕ•ᴥ•ʔ models were not trained on all the data, but only on the last zone due to an error of implementation.  
 Expected error is Mean Absolute error (MAE), exepted when MSE is written.  
@@ -25,6 +45,8 @@ Expected error is Mean Absolute error (MAE), exepted when MSE is written.
 |27 |ʕ•ᴥ•ʔ ʕ•ᴥ•ʔ|0.1855171110453776|0.14418710077268204 | [RF, 500 trees regressor on all zones](https://github.com/Ad-Vi/wind-power-prediction/commit/5b22d107c31b1a325305914676629c77097fd6f8) |  704.69 | |
 |41|ʕ•ᴥ•ʔ|0.24377415359099888|0.23252893098076502| [epsSVR, rbf kernel, test 10%](https://github.com/Ad-Vi/wind-power-prediction/commit/b3c6cd75b3a7d2102d4fe6979dc821bf79818638) | 1015.973 |  7.753 (MSE)|
 |40|ʕ•ᴥ•ʔ|0.1956323910427123|0.1664162858748583|RF, 100 trees, test 10%, correlation FE, MAE|109.398|13.82|
+
+All those submission code and files can be found in the repo by chosing the corresponding commit (click on the method name for a submission above).
 
 ## References
 
