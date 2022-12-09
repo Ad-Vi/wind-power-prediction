@@ -1,79 +1,44 @@
-python3 submission.py -d true -t 0.1
+python3 submission.py -d true
 --Read files for zone 0--
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 1--
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 2--
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 3--
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 4--
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 5--
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 6--
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 7--
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 8--
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 9--
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Read input and output files
 
-X_train : Xs[0][0].shape = (13284, 9)
-Y_train : Ys[0].shape = (13284, 6)
+X_train : Xs[0][0].shape = (14760, 9)
+Y_train : Ys[0].shape = (14760, 6)
 X_predict : Xs[0][1].shape = (2784, 9)
-X_test : Ts[0][0].shape = (1476, 9)
-Y_test : Ts[0][1].shape = (1476,)
-len(Y_test) =  1476
 Random Forest - Start
-Fit Zone  0  | Time : 33.7420608997345
-Fit Zone  1  | Time : 36.270784854888916
-Fit Zone  2  | Time : 33.58157467842102
-Fit Zone  3  | Time : 35.982341051101685
-Fit Zone  4  | Time : 34.341697454452515
-Fit Zone  5  | Time : 35.389976978302
-Fit Zone  6  | Time : 33.55900812149048
-Fit Zone  7  | Time : 32.236393213272095
-Fit Zone  8  | Time : 32.13129448890686
-Fit Zone  9  | Time : 34.48124957084656
-Predict Zone  0  | Time : 0.2791283130645752
-Predict Zone  1  | Time : 0.27930569648742676
-Predict Zone  2  | Time : 0.2819187641143799
-Predict Zone  3  | Time : 0.28299522399902344
-Predict Zone  4  | Time : 0.2837367057800293
-Predict Zone  5  | Time : 0.29099297523498535
-Predict Zone  6  | Time : 0.2785513401031494
-Predict Zone  7  | Time : 0.28001832962036133
-Predict Zone  8  | Time : 0.2736032009124756
-Predict Zone  9  | Time : 0.2819054126739502
-Expected error Zone  0  :  0.06133543636826143
-Expected error Zone  1  :  0.06701051845264398
-Expected error Zone  2  :  0.04436441223752478
-Expected error Zone  3  :  0.053518951213208286
-Expected error Zone  4  :  0.056727437823808236
-Expected error Zone  5  :  0.04348673467522031
-Expected error Zone  6  :  0.06475566486241173
-Expected error Zone  7  :  0.04992041481720863
-Expected error Zone  8  :  0.04103825628605854
-Expected error Zone  9  :  0.03357390119131478
-Mean expected error :  5.157317279276608  %
-Random Forest - End : 346.4521815776825 seconds
+Fit Zone  0  | Time : 45.690022706985474
+Fit Zone  1  | Time : 39.61197900772095
+Fit Zone  2  | Time : 37.86648678779602
+Fit Zone  3  | Time : 40.898194789886475
+Fit Zone  4  | Time : 42.87435841560364
+Fit Zone  5  | Time : 43.188315629959106
+Fit Zone  6  | Time : 42.07433581352234
+Fit Zone  7  | Time : 36.87765383720398
+Fit Zone  8  | Time : 36.39681434631348
+Fit Zone  9  | Time : 36.528664112091064
+Predict Zone  0  | Time : 0.2877941131591797
+Predict Zone  1  | Time : 0.28792667388916016
+Predict Zone  2  | Time : 0.3017544746398926
+Predict Zone  3  | Time : 0.28146958351135254
+Predict Zone  4  | Time : 0.2929234504699707
+Predict Zone  5  | Time : 0.30719971656799316
+Predict Zone  6  | Time : 0.2999427318572998
+Predict Zone  7  | Time : 0.3086543083190918
+Predict Zone  8  | Time : 0.29696178436279297
+Predict Zone  9  | Time : 0.3196573257446289
+Random Forest - End : 404.9946229457855 seconds
+means = [0.29993232 0.31628527 0.43317948 0.29272088 0.29965744 0.35187066
+ 0.29644143 0.45823831 0.40834484 0.42562782]  
 
-means = [0.30119341 0.31868576 0.43928306 0.29203384 0.30028048 0.35690003
- 0.29652535 0.45448792 0.40477647 0.43168207]
-
-means_prediction = [0.40299606 0.43096731 0.44621108 0.41384076 0.46378851 0.44097542
- 0.46378851 0.41782195 0.43527316 0.44097542]
+means_prediction = [0.39579724 0.42656948 0.44120533 0.40881272 0.45624925 0.43688947
+ 0.45624925 0.41047203 0.42747125 0.43688947]  
 Write submission files

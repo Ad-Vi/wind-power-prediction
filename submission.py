@@ -133,10 +133,10 @@ if __name__ == '__main__':
         if does_print:
             print("--Read files for zone "+str(i)+"--")
         Xs.append(feature_selection(pd.read_csv(X_format.format(i=i+1)), does_print=does_print))
-        print('Xs[i].columns ', Xs[i].columns)
+        # print('Xs[i].columns ', Xs[i].columns)
         Ys.append(feature_selection(pd.read_csv(Y_format.format(i=i+1)), does_print=does_print))
         Ts.append(None)
-        print('Ys[i].columns ', Ys[i].columns)
+        # print('Ys[i].columns ', Ys[i].columns)
         # Flatten temporal dimension (NOTE: this step is not compulsory)
         if flatten:
             X_train_test, X_predict, Y_train_test = split_train_test(Xs[i], Ys[i])  
@@ -162,7 +162,6 @@ if __name__ == '__main__':
         if mode == "learn and test":
             print('X_test : Ts[0][0].shape =', Ts[0][0].shape)
             print('Y_test : Ts[0][1].shape =', Ts[0][1].shape)
-            print('len(Y_test) = ', len(Ts[0][1]))
     # Fit your models here
     
     # Learning algorithm -------------------------------------
