@@ -1,109 +1,79 @@
 python3 submission.py -d true -t 0.1
 --Read files for zone 0--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9798767929306834 with U10), V100 (corr = 0.9795806522266491 
-with V10),
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
-'Year', 'Hour'], dtype='object')
+Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 1--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9804381822084728 with U10), V100 (corr = 0.982455155189887 with V10),
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
-'Year', 'Hour'], dtype='object')
+Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 2--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9848346753178652 with U10), V100 (corr = 0.9848182696299067 
-with V10),
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
-'Year', 'Hour'], dtype='object')
+Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 3--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9774928276294482 with U10), V100 (corr = 0.9805841832748018 
-with V10),
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
-'Year', 'Hour'], dtype='object')
+Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 4--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 
-with V10),
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
-'Year', 'Hour'], dtype='object')
+Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 5--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10),
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :  
-Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 
-'Year', 'Hour'], dtype='object')
+Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
+Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 6--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 
-with V10),
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :  
+Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 7--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9800736945509834 with U10), V100 (corr = 0.9813904528317128 with V10),
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :
+Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 8--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.980615047817854 with U10), V100 (corr = 0.9811444594399613 with V10),
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :
+Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 --Read files for zone 9--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10),
-Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
-Removed features (with correlation >= 0.9 ) :
+Xs[i].columns  Index(['ZONEID', 'U10', 'V10', 'U100', 'V100', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Ys[i].columns  Index(['ZONEID', 'TARGETVAR', 'Day', 'Month', 'Year', 'Hour'], dtype='object')
 Read input and output files
 
-X_train : Xs[0][0].shape = (13284, 7)
+X_train : Xs[0][0].shape = (13284, 9)
 Y_train : Ys[0].shape = (13284, 6)
-X_predict : Xs[0][1].shape = (2784, 7)
-X_test : Ts[0][0].shape = (1476, 7)
+X_predict : Xs[0][1].shape = (2784, 9)
+X_test : Ts[0][0].shape = (1476, 9)
 Y_test : Ts[0][1].shape = (1476,)
 len(Y_test) =  1476
 Random Forest - Start
-Fit Zone  0  | Time : 22.532887935638428
-Fit Zone  1  | Time : 23.00654673576355
-Fit Zone  2  | Time : 22.726635932922363
-Fit Zone  3  | Time : 23.140226364135742
-Fit Zone  4  | Time : 23.21881079673767
-Fit Zone  5  | Time : 24.270399570465088
-Fit Zone  6  | Time : 22.704873085021973
-Fit Zone  7  | Time : 23.29644012451172
-Fit Zone  8  | Time : 25.652978658676147
-Fit Zone  9  | Time : 26.8972806930542
-Predict Zone  0  | Time : 0.4721336364746094
-Predict Zone  1  | Time : 0.37047553062438965
-Predict Zone  2  | Time : 0.38147449493408203
-Predict Zone  3  | Time : 0.34691429138183594
-Predict Zone  4  | Time : 0.3411543369293213
-Predict Zone  5  | Time : 0.34490084648132324
-Predict Zone  6  | Time : 0.32190895080566406
-Predict Zone  7  | Time : 0.33532118797302246
-Predict Zone  8  | Time : 0.5205702781677246
-Predict Zone  9  | Time : 0.5102050304412842
-Expected error Zone  0  :  0.0521521678327758
-Expected error Zone  1  :  0.07016429162188674
-Expected error Zone  2  :  0.04874270267147337
-Expected error Zone  3  :  0.05373705644649322
-Expected error Zone  4  :  0.049071675082418144
-Expected error Zone  5  :  0.04329079649570712
-Expected error Zone  6  :  0.057283513791609134
-Expected error Zone  7  :  0.05532765000414471
-Expected error Zone  8  :  0.0508517575187432
-Expected error Zone  9  :  0.03579688105327819
-Mean expected error :  5.164184925185297  %
-Random Forest - End : 244.5769236087799 seconds
+Fit Zone  0  | Time : 33.7420608997345
+Fit Zone  1  | Time : 36.270784854888916
+Fit Zone  2  | Time : 33.58157467842102
+Fit Zone  3  | Time : 35.982341051101685
+Fit Zone  4  | Time : 34.341697454452515
+Fit Zone  5  | Time : 35.389976978302
+Fit Zone  6  | Time : 33.55900812149048
+Fit Zone  7  | Time : 32.236393213272095
+Fit Zone  8  | Time : 32.13129448890686
+Fit Zone  9  | Time : 34.48124957084656
+Predict Zone  0  | Time : 0.2791283130645752
+Predict Zone  1  | Time : 0.27930569648742676
+Predict Zone  2  | Time : 0.2819187641143799
+Predict Zone  3  | Time : 0.28299522399902344
+Predict Zone  4  | Time : 0.2837367057800293
+Predict Zone  5  | Time : 0.29099297523498535
+Predict Zone  6  | Time : 0.2785513401031494
+Predict Zone  7  | Time : 0.28001832962036133
+Predict Zone  8  | Time : 0.2736032009124756
+Predict Zone  9  | Time : 0.2819054126739502
+Expected error Zone  0  :  0.06133543636826143
+Expected error Zone  1  :  0.06701051845264398
+Expected error Zone  2  :  0.04436441223752478
+Expected error Zone  3  :  0.053518951213208286
+Expected error Zone  4  :  0.056727437823808236
+Expected error Zone  5  :  0.04348673467522031
+Expected error Zone  6  :  0.06475566486241173
+Expected error Zone  7  :  0.04992041481720863
+Expected error Zone  8  :  0.04103825628605854
+Expected error Zone  9  :  0.03357390119131478
+Mean expected error :  5.157317279276608  %
+Random Forest - End : 346.4521815776825 seconds
 
 means = [0.30119341 0.31868576 0.43928306 0.29203384 0.30028048 0.35690003
  0.29652535 0.45448792 0.40477647 0.43168207]
 
-means_prediction = [0.3733408  0.42531934 0.45550759 0.37945812 0.43778723 0.44090559 0.43778723 0.41677943 0.40179664 0.44090559]
+means_prediction = [0.40299606 0.43096731 0.44621108 0.41384076 0.46378851 0.44097542
+ 0.46378851 0.41782195 0.43527316 0.44097542]
 Write submission files

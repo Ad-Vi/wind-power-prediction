@@ -51,8 +51,8 @@ def expected_error(regressor, X_test, Y_test):
 
 def feature_selection(data, does_print = False):
     # return variance_treshold_feature_selection(data, does_print=does_print)
-    return correlation_feature_extraction(data, does_print=does_print)
-    # return data
+    # return correlation_feature_extraction(data, does_print=does_print)
+    return data
 
 def variance_treshold_feature_selection(data, treshold=1e-6, does_print=False):
     data_copy = data.copy()
