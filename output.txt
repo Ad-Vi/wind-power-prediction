@@ -1,4 +1,4 @@
-python3 submission.py -d true
+python3 submission.py -d true -t 0.1
 --Read files for zone 0--
 --Read files for zone 1--
 --Read files for zone 2--
@@ -11,28 +11,41 @@ python3 submission.py -d true
 --Read files for zone 9--
 Read input and output files
 
-X_train : Xs[0][0].shape = (14760, 9)
-Y_train : Ys[0].shape = (14760, 6)
-X_train_all : X_train_all.shape = (147600, 9)
-Y_train_all : Y_train_all.shape = (147600, 6)
+X_train : Xs[0][0].shape = (13284, 9)
+Y_train : Ys[0].shape = (13284, 6)
+X_train_all : X_train_all.shape = (132840, 9)
+Y_train_all : Y_train_all.shape = (132840, 6)
 X_predict : Xs[0][1].shape = (2784, 9)
-Random Forest - Start
-Regressor fitted | Time : 560.4734978675842
-Predict Zone  0  | Time : 35.38096880912781
-Predict Zone  1  | Time : 16.005009412765503
-Predict Zone  2  | Time : 13.230847120285034
-Predict Zone  3  | Time : 20.590032815933228
-Predict Zone  4  | Time : 13.286471605300903
-Predict Zone  5  | Time : 10.074238300323486
-Predict Zone  6  | Time : 5.37421989440918
-Predict Zone  7  | Time : 16.150691747665405
-Predict Zone  8  | Time : 9.031389474868774
-Predict Zone  9  | Time : 5.089942455291748
-Random Forest - End : 704.6983978748322 seconds
+X_test : Ts[0][0].shape = (1476, 9)
+Y_test : Ts[0][1].shape = (1476,)
+Support Vector Regressor - Start
+ Regressor fitted | Time : 800.0498151779175
+Predict Zone  0  | Time : 14.55980920791626
+Predict Zone  1  | Time : 14.267391443252563
+Predict Zone  2  | Time : 13.935671329498291
+Predict Zone  3  | Time : 13.983477354049683
+Predict Zone  4  | Time : 13.895783424377441
+Predict Zone  5  | Time : 13.970050811767578
+Predict Zone  6  | Time : 13.800491333007812
+Predict Zone  7  | Time : 13.800888061523438
+Predict Zone  8  | Time : 13.701961994171143
+Predict Zone  9  | Time : 14.073720932006836
+Expected error Zone  0  :  0.0575218646616041
+Expected error Zone  1  :  0.06388178203007493
+Expected error Zone  2  :  0.0987496415724414
+Expected error Zone  3  :  0.0584859327331992
+Expected error Zone  4  :  0.048322398957293476
+Expected error Zone  5  :  0.06760520724482916
+Expected error Zone  6  :  0.0500093155300269
+Expected error Zone  7  :  0.15563156769786265
+Expected error Zone  8  :  0.09751198358507251
+Expected error Zone  9  :  0.0776282889321381
+Mean expected error :  7.753479829445424  %
+Support Vector Regressor - End : 1015.9736244678497 seconds
 
-means = [0.29993232 0.31628527 0.43317948 0.29272088 0.29965744 0.35187066
- 0.29644143 0.45823831 0.40834484 0.42562782]
+means = [0.30119341 0.31868576 0.43928306 0.29203384 0.30028048 0.35690003
+ 0.29652535 0.45448792 0.40477647 0.43168207]
 
-means_prediction = [0.30301982 0.34680831 0.423279   0.2941538  0.31787988 0.36394505
- 0.31804507 0.449903   0.41628596 0.43714435]
+means_prediction = [0.27613869 0.28752901 0.30210899 0.32116844 0.33110222 0.34392017
+ 0.35753044 0.33536396 0.3749565  0.40054794]
 Write submission files

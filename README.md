@@ -20,6 +20,7 @@ A contest is held between the students on gradescope and the goal is to have the
 |36 | ʕ•ᴥ•ʔ | 0.20955215554930665 | 0.172885499857228 |RF, 500 trees, test 10% | 346.45 | 5.15 |
 |35 | ʕ•ᴥ•ʔ | 0.20488767291036022 | 0.16671282241238644 | RF, 500 trees | 404.994 | |
 |27 |ʕ•ᴥ•ʔ ʕ•ᴥ•ʔ|0.1855171110453776|0.14418710077268204 | RF, 500 trees regressor on all zones |  704.69 | |
+|41|ʕ•ᴥ•ʔ|0.24377415359099888|0.23252893098076502| epsSVR, rbf kernel, test 10% | 1015.973 |  7.753 |
 
 ## References
 

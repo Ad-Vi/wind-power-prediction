@@ -173,8 +173,8 @@ if __name__ == '__main__':
     # Learning algorithm -------------------------------------
     start = time.time()
     if does_print:
-        print('Random Forest - Start')
-    regressor = RandomForestRegressor(n_estimators=500)
+        print('Support Vector Regressor - Start')
+    regressor = svm.SVR(kernel='rbf', C=1e3, epsilon=0.1)
     t = time.time()
     regressor.fit(X_train_all, Y_train_all['TARGETVAR'])
     if does_print:
@@ -194,7 +194,7 @@ if __name__ == '__main__':
         print("Mean expected error : ", np.mean(Ms)*100, " %")
         
     if does_print:
-        print('Random Forest - End : ' + str(time.time() - start) + ' seconds')
+        print('Support Vector Regressor - End : ' + str(time.time() - start) + ' seconds')
 
     # Example: predict global training mean for each zone
     means = np.zeros(N_ZONES)
