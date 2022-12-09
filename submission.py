@@ -8,7 +8,7 @@ import seaborn as sns
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import BaggingRegressor
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.feature_selection import VarianceThreshold
+from sklearn import svm
 
 
 def split_train_test(X, Y):
@@ -129,6 +129,8 @@ if __name__ == '__main__':
     # Read input and output files (1 per zone)
     # Xs : input values ; Ys : output values ; Ts : testing values ; Ms : Moments (E)
     Xs, Ys, Ts, Ms = [], [], [], []
+    X_train_all = pd.DataFrame()
+    Y_train_all = pd.DataFrame()
     for i in range(N_ZONES):
         if does_print:
             print("--Read files for zone "+str(i)+"--")
@@ -154,10 +156,14 @@ if __name__ == '__main__':
                 Ts[i] = (X_test, Y_test['TARGETVAR'])
             Xs[i] = (X_train, X_predict)
             Ys[i] = Y_train
+            X_train_all = pd.concat([X_train_all, X_train])
+            Y_train_all = pd.concat([Y_train_all, Y_train])
     if does_print:
         print('Read input and output files\n')
         print('X_train : Xs[0][0].shape =', Xs[0][0].shape)
         print('Y_train : Ys[0].shape =', Ys[0].shape)
+        print('X_train_all : X_train_all.shape =', X_train_all.shape)
+        print('Y_train_all : Y_train_all.shape =', Y_train_all.shape)
         print('X_predict : Xs[0][1].shape =', Xs[0][1].shape)
         if mode == "learn and test":
             print('X_test : Ts[0][0].shape =', Ts[0][0].shape)
@@ -170,11 +176,10 @@ if __name__ == '__main__':
         print('Random Forest - Start')
     regressor = RandomForestRegressor(n_estimators=500)
     t = time.time()
-    for i in range(N_ZONES):
-        regressor.fit(Xs[i][0], Ys[i]['TARGETVAR'])
-        if does_print:
-            print("Fit Zone ", i, " | Time :", str(time.time()-t))
-        t = time.time()
+    regressor.fit(X_train_all, Y_train_all['TARGETVAR'])
+    if does_print:
+        print("Regressor fitted | Time :", str(time.time()-t))
+    t = time.time()
     for i in range(N_ZONES):
         Ys[i] = (Ys[i], regressor.predict(Xs[i][1]))
         if does_print:

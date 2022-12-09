@@ -13,32 +13,26 @@ Read input and output files
 
 X_train : Xs[0][0].shape = (14760, 9)
 Y_train : Ys[0].shape = (14760, 6)
+X_train_all : X_train_all.shape = (147600, 9)
+Y_train_all : Y_train_all.shape = (147600, 6)
 X_predict : Xs[0][1].shape = (2784, 9)
 Random Forest - Start
-Fit Zone  0  | Time : 45.690022706985474
-Fit Zone  1  | Time : 39.61197900772095
-Fit Zone  2  | Time : 37.86648678779602
-Fit Zone  3  | Time : 40.898194789886475
-Fit Zone  4  | Time : 42.87435841560364
-Fit Zone  5  | Time : 43.188315629959106
-Fit Zone  6  | Time : 42.07433581352234
-Fit Zone  7  | Time : 36.87765383720398
-Fit Zone  8  | Time : 36.39681434631348
-Fit Zone  9  | Time : 36.528664112091064
-Predict Zone  0  | Time : 0.2877941131591797
-Predict Zone  1  | Time : 0.28792667388916016
-Predict Zone  2  | Time : 0.3017544746398926
-Predict Zone  3  | Time : 0.28146958351135254
-Predict Zone  4  | Time : 0.2929234504699707
-Predict Zone  5  | Time : 0.30719971656799316
-Predict Zone  6  | Time : 0.2999427318572998
-Predict Zone  7  | Time : 0.3086543083190918
-Predict Zone  8  | Time : 0.29696178436279297
-Predict Zone  9  | Time : 0.3196573257446289
-Random Forest - End : 404.9946229457855 seconds
-means = [0.29993232 0.31628527 0.43317948 0.29272088 0.29965744 0.35187066
- 0.29644143 0.45823831 0.40834484 0.42562782]  
+Regressor fitted | Time : 560.4734978675842
+Predict Zone  0  | Time : 35.38096880912781
+Predict Zone  1  | Time : 16.005009412765503
+Predict Zone  2  | Time : 13.230847120285034
+Predict Zone  3  | Time : 20.590032815933228
+Predict Zone  4  | Time : 13.286471605300903
+Predict Zone  5  | Time : 10.074238300323486
+Predict Zone  6  | Time : 5.37421989440918
+Predict Zone  7  | Time : 16.150691747665405
+Predict Zone  8  | Time : 9.031389474868774
+Predict Zone  9  | Time : 5.089942455291748
+Random Forest - End : 704.6983978748322 seconds
 
-means_prediction = [0.39579724 0.42656948 0.44120533 0.40881272 0.45624925 0.43688947
- 0.45624925 0.41047203 0.42747125 0.43688947]  
+means = [0.29993232 0.31628527 0.43317948 0.29272088 0.29965744 0.35187066
+ 0.29644143 0.45823831 0.40834484 0.42562782]
+
+means_prediction = [0.30301982 0.34680831 0.423279   0.2941538  0.31787988 0.36394505
+ 0.31804507 0.449903   0.41628596 0.43714435]
 Write submission files

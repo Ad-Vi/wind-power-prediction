@@ -19,6 +19,7 @@ A contest is held between the students on gradescope and the goal is to have the
 |38 | ʕ•ᴥ•ʔ |0.2138090495818373 | 0.17895749096035105 | RF, 500 trees, test 10%, correlation FE | 244.5769236087799 | 5.1641 |
 |36 | ʕ•ᴥ•ʔ | 0.20955215554930665 | 0.172885499857228 |RF, 500 trees, test 10% | 346.45 | 5.15 |
 |35 | ʕ•ᴥ•ʔ | 0.20488767291036022 | 0.16671282241238644 | RF, 500 trees | 404.994 | |
+|27 |ʕ•ᴥ•ʔ ʕ•ᴥ•ʔ|0.1855171110453776|0.14418710077268204 | RF, 500 trees regressor on all zones |  704.69 | |
 
 ## References
 
