@@ -1,51 +1,71 @@
 python3 submission.py -d true -t 0.1
 --Read files for zone 0--
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9798767929306834 with U10), V100 (corr = 0.9795806522266491 with V10),
+Removed features (with correlation >= 0.9 ) :
 --Read files for zone 1--
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9804381822084728 with U10), V100 (corr = 0.982455155189887 with V10),
+Removed features (with correlation >= 0.9 ) :
 --Read files for zone 2--
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9848346753178652 with U10), V100 (corr = 0.9848182696299067 with V10),
+Removed features (with correlation >= 0.9 ) :
 --Read files for zone 3--
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9774928276294482 with U10), V100 (corr = 0.9805841832748018 with V10),
+Removed features (with correlation >= 0.9 ) :
 --Read files for zone 4--
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 with V10),
+Removed features (with correlation >= 0.9 ) :
 --Read files for zone 5--
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10),
+Removed features (with correlation >= 0.9 ) :
 --Read files for zone 6--
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 with V10),
+Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 7--
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9800736945509834 with U10), V100 (corr = 0.9813904528317128 with V10),
+Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 8--
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.980615047817854 with U10), V100 (corr = 0.9811444594399613 with V10),
+Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 9--
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10),
+Removed features (with correlation >= 0.9 ) :  
 Read input and output files
 
-X_train : Xs[0][0].shape = (13284, 9)
+X_train : Xs[0][0].shape = (13284, 7)
 Y_train : Ys[0].shape = (13284, 6)
-X_train_all : X_train_all.shape = (132840, 9)
+X_train_all : X_train_all.shape = (132840, 7)
 Y_train_all : Y_train_all.shape = (132840, 6)
-X_predict : Xs[0][1].shape = (2784, 9)
-X_test : Ts[0][0].shape = (1476, 9)
+X_predict : Xs[0][1].shape = (2784, 7)
+X_test : Ts[0][0].shape = (1476, 7)
 Y_test : Ts[0][1].shape = (1476,)
-Support Vector Regressor - Start
- Regressor fitted | Time : 800.0498151779175
-Predict Zone  0  | Time : 14.55980920791626
-Predict Zone  1  | Time : 14.267391443252563
-Predict Zone  2  | Time : 13.935671329498291
-Predict Zone  3  | Time : 13.983477354049683
-Predict Zone  4  | Time : 13.895783424377441
-Predict Zone  5  | Time : 13.970050811767578
-Predict Zone  6  | Time : 13.800491333007812
-Predict Zone  7  | Time : 13.800888061523438
-Predict Zone  8  | Time : 13.701961994171143
-Predict Zone  9  | Time : 14.073720932006836
-Expected error Zone  0  :  0.0575218646616041
-Expected error Zone  1  :  0.06388178203007493
-Expected error Zone  2  :  0.0987496415724414
-Expected error Zone  3  :  0.0584859327331992
-Expected error Zone  4  :  0.048322398957293476
-Expected error Zone  5  :  0.06760520724482916
-Expected error Zone  6  :  0.0500093155300269
-Expected error Zone  7  :  0.15563156769786265
-Expected error Zone  8  :  0.09751198358507251
-Expected error Zone  9  :  0.0776282889321381
-Mean expected error :  7.753479829445424  %
-Support Vector Regressor - End : 1015.9736244678497 seconds
+Random Forest - Start
+Regressor fitted | Time : 106.57002329826355
+Predict Zone  0  | Time : 0.18130016326904297
+Predict Zone  1  | Time : 0.14005517959594727
+Predict Zone  2  | Time : 0.14359307289123535
+Predict Zone  3  | Time : 0.16344118118286133
+Predict Zone  4  | Time : 0.18265676498413086
+Predict Zone  5  | Time : 0.22496509552001953
+Predict Zone  6  | Time : 0.14970064163208008
+Predict Zone  7  | Time : 0.14106297492980957
+Predict Zone  8  | Time : 0.13642287254333496
+Predict Zone  9  | Time : 0.1604292392730713
+Expected error Zone  0  :  0.1406165674444618
+Expected error Zone  1  :  0.1562783898650074
+Expected error Zone  2  :  0.1443284637625227
+Expected error Zone  3  :  0.12768288967946473
+Expected error Zone  4  :  0.10408837083882619
+Expected error Zone  5  :  0.12480838605175562
+Expected error Zone  6  :  0.13109810276160927
+Expected error Zone  7  :  0.17070595349461853
+Expected error Zone  8  :  0.141853124311011
+Expected error Zone  9  :  0.1406330623998904
+Mean Absolute Error :  13.820933106091676  %
+Random Forest - End : 109.39854454994202 seconds
 
 means = [0.30119341 0.31868576 0.43928306 0.29203384 0.30028048 0.35690003
  0.29652535 0.45448792 0.40477647 0.43168207]
 
-means_prediction = [0.27613869 0.28752901 0.30210899 0.32116844 0.33110222 0.34392017
- 0.35753044 0.33536396 0.3749565  0.40054794]
-Write submission files
+means_prediction = [0.30965426 0.36099151 0.42660446 0.29731683 0.32610089 0.37328556
+ 0.32502408 0.44990034 0.41669743 0.44199494]
+Submission files written

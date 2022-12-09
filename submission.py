@@ -41,18 +41,28 @@ def split_train_test(X, Y):
     return X_train, X_predict, Y_train
 
 def expected_error(regressor, X_test, Y_test):
+    """computes the Mean Absolute Error (MAE) of the regressor on the test set
+
+    Args:
+        regressor : regressor used to predict the output
+        X_test (dataframe): df of input features of the test set
+        Y_test (dataframe): df of output values of the test set
+
+    Returns:
+        E: MAE of the regressor on the test set
+    """
     E = 0
     test_size = len(Y_test)
     predictions = np.zeros(test_size)
     # Compute average over all learning sets
     predictions = regressor.predict(X_test)
-    E = np.mean((Y_test - predictions) ** 2) # mean squared error
+    E = (1/test_size) * np.sum(np.abs((Y_test - predictions))) # MAE
     return E
 
 def feature_selection(data, does_print = False):
     # return variance_treshold_feature_selection(data, does_print=does_print)
-    # return correlation_feature_extraction(data, does_print=does_print)
-    return data
+    return correlation_feature_extraction(data, does_print=does_print)
+    # return data
 
 def variance_treshold_feature_selection(data, treshold=1e-6, does_print=False):
     data_copy = data.copy()
@@ -173,8 +183,8 @@ if __name__ == '__main__':
     # Learning algorithm -------------------------------------
     start = time.time()
     if does_print:
-        print('Support Vector Regressor - Start')
-    regressor = svm.SVR(kernel='rbf', C=1e3, epsilon=0.1)
+        print('Random Forest - Start')
+    regressor = RandomForestRegressor(n_estimators=100)
     t = time.time()
     regressor.fit(X_train_all, Y_train_all['TARGETVAR'])
     if does_print:
@@ -191,10 +201,10 @@ if __name__ == '__main__':
             Ms.append(E)
             if does_print:
                 print("Expected error Zone ", i, " : ", E)
-        print("Mean expected error : ", np.mean(Ms)*100, " %")
+        print("Mean Absolute Error : ", np.mean(Ms)*100, " %")
         
     if does_print:
-        print('Support Vector Regressor - End : ' + str(time.time() - start) + ' seconds')
+        print('Random Forest - End : ' + str(time.time() - start) + ' seconds')
 
     # Example: predict global training mean for each zone
     means = np.zeros(N_ZONES)
@@ -212,4 +222,4 @@ if __name__ == '__main__':
         Y_predict = pd.Series(Ys[i][1], index=range(len(Xs[i][1])), name='TARGETVAR')
         Y_predict.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
     if does_print:
-        print('Write submission files')
+        print('Submission files written')
