@@ -24,10 +24,12 @@ Run it with python3 with the following parameters.
 | `--display` | `-d` | Whether information are print in the terminal during the computing | Boolean | False |
 | `--test_size` | `-t` | Proportion of the data used to test our model | float | 0.0 |
 
-## Submissions on gradescope
+## Tries and results
 
 Before the submission ʕ•ᴥ•ʔ ʕ•ᴥ•ʔ models were not trained on all the data, but only on the last zone due to an error of implementation.  
-Expected error is Mean Absolute error (MAE), exepted when MSE is written.  
+Expected error is Mean Absolute error (MAE), exepted when MSE is written and for Neural Networks - where it is the models evaluation method output.  
+
+### Submissions on gradescope
 
 | Position |     name      |     MAE_GLOB         |      MAE_Z1          |   method                      | calculation time (s)| Expected error (%)|
 |:---------|:--------------|:--------------------:|:--------------------:|:--------------------------:|--------------------:|------------------:|
@@ -44,7 +46,10 @@ Expected error is Mean Absolute error (MAE), exepted when MSE is written.
 |35 | ʕ•ᴥ•ʔ | 0.20488767291036022 | 0.16671282241238644 | [RF, 500 trees](https://github.com/Ad-Vi/wind-power-prediction/commit/81890a7362821aa8ca47a12e868f9695ada8a077) | 404.994 | |
 |27 |ʕ•ᴥ•ʔ ʕ•ᴥ•ʔ|0.1855171110453776|0.14418710077268204 | [RF, 500 trees regressor on all zones](https://github.com/Ad-Vi/wind-power-prediction/commit/5b22d107c31b1a325305914676629c77097fd6f8) |  704.69 | |
 |41|ʕ•ᴥ•ʔ|0.24377415359099888|0.23252893098076502| [epsSVR, rbf kernel, test 10%](https://github.com/Ad-Vi/wind-power-prediction/commit/b3c6cd75b3a7d2102d4fe6979dc821bf79818638) | 1015.973 |  7.753 (MSE)|
-|40|ʕ•ᴥ•ʔ|0.1956323910427123|0.1664162858748583|RF, 100 trees, test 10%, correlation FE, MAE|109.398|13.82|
+|40|ʕ•ᴥ•ʔ|0.1956323910427123|0.1664162858748583|[RF, 100 trees, test 10%, correlation FE, MAE](https://github.com/Ad-Vi/wind-power-prediction/commit/c739b9d8a4e07c899da7ceb306cc52c605c05fb6)|109.398|13.82|
+|40|oups|0.2556024822676563|0.2663099177565241|ANN, 3 hidden layers, test 10%| 12.077|7.29|
+
+### Unsubmitted tries
 
 All those submission code and files can be found in the repo by chosing the corresponding commit (click on the method name for a submission above).
 
@@ -52,3 +57,5 @@ All those submission code and files can be found in the repo by chosing the corr
 
 <https://scikit-learn.org/stable/supervised_learning.html#supervised-learning>  
 <https://vishalramesh.substack.com/p/feature-selection-correlation-and-p-value-da8921bfb3cf?s=w>
+<https://chat.openai.com/chat>
+<https://towardsdatascience.com/designing-your-neural-networks-a5e4617027ed>

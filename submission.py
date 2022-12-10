@@ -5,10 +5,13 @@ import time
 from argparse import ArgumentParser
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import BaggingRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn import svm
+import keras
+
 
 
 def split_train_test(X, Y):
@@ -40,7 +43,7 @@ def split_train_test(X, Y):
     X_predict = X[Y['TARGETVAR'] == -1]
     return X_train, X_predict, Y_train
 
-def expected_error(regressor, X_test, Y_test):
+def expected_error(regressor, X_test, Y_test, is_neural_network=False):
     """computes the Mean Absolute Error (MAE) of the regressor on the test set
 
     Args:
@@ -51,13 +54,46 @@ def expected_error(regressor, X_test, Y_test):
     Returns:
         E: MAE of the regressor on the test set
     """
-    E = 0
-    test_size = len(Y_test)
-    predictions = np.zeros(test_size)
-    # Compute average over all learning sets
-    predictions = regressor.predict(X_test)
-    E = (1/test_size) * np.sum(np.abs((Y_test - predictions))) # MAE
-    return E
+    if is_neural_network:
+        # evaluate model on test data
+        scores = regressor.evaluate(X_test, Y_test, verbose=0)
+        return scores*100
+    else:
+        E = 0
+        test_size = len(Y_test)
+        predictions = np.zeros(test_size)
+        # Compute average over all learning sets
+        predictions = regressor.predict(X_test)
+        E = (1/test_size) * np.sum(np.abs((Y_test - predictions))) # MAE
+        return E
+
+def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initializer='he_uniform', loss='mean_squared_error', optimizer='adam', does_print=False):
+    model = keras.models.Sequential()
+    # add input layer
+    model.add(keras.layers.Dense(x_size, input_dim=x_size, activation=activation, kernel_initializer=kernel_initializer))
+    
+    # add hidden layers
+    for i in range(nbr_layers-2):
+        model.add(keras.layers.Dense(x_size, activation=activation, kernel_initializer=kernel_initializer))
+    
+    # add regression output layer
+    model.add(keras.layers.Dense(1, activation='linear', kernel_initializer=kernel_initializer))
+    
+    # compile model
+    model.compile(loss=loss, optimizer=optimizer)
+    if does_print:
+        print("Neural network :")
+        print("  Input layer : ", x_size, " neurons")
+        print("  Hidden layers : ", nbr_layers-2, " layers of ", x_size, " neurons")
+        print("  Output layer : 1 neuron")
+        print("  Loss : ", loss)
+        print("  Optimizer : ", optimizer)
+        print("  Activation : ", activation)
+        print("  Kernel initializer : ", kernel_initializer)
+        print("  Model summary :")
+        print(model.summary())
+    
+    return model
 
 def feature_selection(data, does_print = False):
     # return variance_treshold_feature_selection(data, does_print=does_print)
@@ -106,6 +142,7 @@ def correlation_feature_extraction(data, treshold=0.9, does_print=False):
     if does_print:
         print('Removed features (with correlation >=', treshold, ') : ', feature_to_print)
         corr.to_csv("useless/correlation.csv", float_format='%.6f')
+        plt.figure()
         plt.plot
         sns.heatmap(corr)
         plt.savefig('useless/correlation.png')
@@ -145,10 +182,8 @@ if __name__ == '__main__':
         if does_print:
             print("--Read files for zone "+str(i)+"--")
         Xs.append(feature_selection(pd.read_csv(X_format.format(i=i+1)), does_print=does_print))
-        # print('Xs[i].columns ', Xs[i].columns)
         Ys.append(feature_selection(pd.read_csv(Y_format.format(i=i+1)), does_print=does_print))
         Ts.append(None)
-        # print('Ys[i].columns ', Ys[i].columns)
         # Flatten temporal dimension (NOTE: this step is not compulsory)
         if flatten:
             X_train_test, X_predict, Y_train_test = split_train_test(Xs[i], Ys[i])  
@@ -160,9 +195,20 @@ if __name__ == '__main__':
                 testing_size = int(0.1*n_samples)
                 learn_size = n_samples - testing_size
                 X_train = X_train_test[0:learn_size]
-                X_test = X_train_test[learn_size: n_samples]
                 Y_train = Y_train_test[0:learn_size]
                 Y_test = Y_train_test[learn_size: n_samples]
+                X_test = X_train_test[learn_size: n_samples]
+            # create scaler and fit it on learning data
+            scaler = MinMaxScaler(feature_range=(0, 1))
+            scaler.fit(X_train)
+            # transform training, predict and test data
+            X_train_scaled = scaler.transform(X_train)
+            X_predict_scaled = scaler.transform(X_predict)
+            X_train = pd.DataFrame(X_train_scaled, columns=X_train.columns, index=X_train.index)
+            X_predict = pd.DataFrame(X_predict_scaled, columns=X_predict.columns, index=X_predict.index)
+            if mode == "learn and test":
+                X_test_scaled = scaler.transform(X_test)
+                X_test = pd.DataFrame(X_test_scaled, columns=X_test.columns, index=X_test.index)
                 Ts[i] = (X_test, Y_test['TARGETVAR'])
             Xs[i] = (X_train, X_predict)
             Ys[i] = Y_train
@@ -183,28 +229,29 @@ if __name__ == '__main__':
     # Learning algorithm -------------------------------------
     start = time.time()
     if does_print:
-        print('Random Forest - Start')
-    regressor = RandomForestRegressor(n_estimators=100)
+        print('Neural Network - Start')
+    regressor = construct_Neural_network(x_size=Xs[0][0].shape[1], nbr_layers=5, does_print=does_print)
     t = time.time()
     regressor.fit(X_train_all, Y_train_all['TARGETVAR'])
     if does_print:
         print("Regressor fitted | Time :", str(time.time()-t))
     t = time.time()
     for i in range(N_ZONES):
-        Ys[i] = (Ys[i], regressor.predict(Xs[i][1]))
+        Ys[i] = (Ys[i], np.array(regressor.predict(Xs[i][1])).flatten())
         if does_print:
             print("Predict Zone ", i, " | Time :", str(time.time()-t))
+            print("    Ys[",i,"][1].shape = ", Ys[i][1].shape)
         t = time.time()
     if mode == "learn and test":
         for i in range(N_ZONES):
-            E = expected_error(regressor, Ts[i][0], Ts[i][1])
+            E = expected_error(regressor, Ts[i][0], Ts[i][1], is_neural_network=True)
             Ms.append(E)
             if does_print:
                 print("Expected error Zone ", i, " : ", E)
-        print("Mean Absolute Error : ", np.mean(Ms)*100, " %")
+        print("Mean Error : ", np.mean(Ms), " %")
         
     if does_print:
-        print('Random Forest - End : ' + str(time.time() - start) + ' seconds')
+        print('Neural Network - End : ' + str(time.time() - start) + ' seconds')
 
     # Example: predict global training mean for each zone
     means = np.zeros(N_ZONES)
@@ -218,6 +265,7 @@ if __name__ == '__main__':
 
     # Write submission files (1 per zone). The predicted test series must
     # follow the order of X_predict.
+    print("--------------------------------------------------------------------------------")
     for i in range(N_ZONES):
         Y_predict = pd.Series(Ys[i][1], index=range(len(Xs[i][1])), name='TARGETVAR')
         Y_predict.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
