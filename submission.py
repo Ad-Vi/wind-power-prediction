@@ -97,8 +97,8 @@ def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initi
 
 def feature_selection(data, does_print = False):
     # return variance_treshold_feature_selection(data, does_print=does_print)
-    return correlation_feature_extraction(data, does_print=does_print)
-    # return data
+    # return correlation_feature_extraction(data, does_print=does_print)
+    return data
 
 def variance_treshold_feature_selection(data, treshold=1e-6, does_print=False):
     data_copy = data.copy()
@@ -232,7 +232,7 @@ if __name__ == '__main__':
         print('Neural Network - Start')
     regressor = construct_Neural_network(x_size=Xs[0][0].shape[1], nbr_layers=5, does_print=does_print)
     t = time.time()
-    regressor.fit(X_train_all, Y_train_all['TARGETVAR'], epochs=150, batch_size=10, verbose=0)
+    regressor.fit(X_train_all, Y_train_all['TARGETVAR'], epochs=50, batch_size=int(X_train_all.shape[0]/10), verbose=0)
     if does_print:
         print("Regressor fitted | Time :", str(time.time()-t))
     t = time.time()

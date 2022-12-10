@@ -1,60 +1,40 @@
-python3 submission.py -d True -t 0.1
-2022-12-10 11:32:17.538624: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2022-12-10 11:32:18.330747: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-12-10 11:32:18.330813: I tensorflow/compiler/xla/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set 
-up on your machine.
-2022-12-10 11:32:19.612450: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
-2022-12-10 11:32:19.612708: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
-2022-12-10 11:32:19.612747: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+python3 submission.py -d 
+True -t 0.1
+2022-12-10 12:35:59.712883: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags. 
+2022-12-10 12:35:59.870011: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-12-10 12:35:59.870069: I tensorflow/compiler/xla/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2022-12-10 12:36:00.717565: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2022-12-10 12:36:00.717669: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2022-12-10 12:36:00.717731: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.        
 --Read files for zone 0--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9798767929306834 with U10), V100 (corr = 0.9795806522266491 with V10), 
-Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 1--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9804381822084728 with U10), V100 (corr = 0.982455155189887 with V10), 
-Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 2--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9848346753178652 with U10), V100 (corr = 0.9848182696299067 with V10), 
-Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 3--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9774928276294482 with U10), V100 (corr = 0.9805841832748018 with V10), 
-Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 4--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 with V10), 
-Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 5--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10), 
-Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 6--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 with V10), 
-Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 7--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9800736945509834 with U10), V100 (corr = 0.9813904528317128 with V10), 
-Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 8--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.980615047817854 with U10), V100 (corr = 0.9811444594399613 with V10), 
-Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 9--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10), 
-Removed features (with correlation >= 0.9 ) :  
 Read input and output files
 
-X_train : Xs[0][0].shape = (13284, 7)
+X_train : Xs[0][0].shape = (13284, 9)
 Y_train : Ys[0].shape = (13284, 6)
-X_train_all : X_train_all.shape = (132840, 7)
+X_train_all : X_train_all.shape = (132840, 9)
 Y_train_all : Y_train_all.shape = (132840, 6)
-X_predict : Xs[0][1].shape = (2784, 7)
-X_test : Ts[0][0].shape = (1476, 7)
+X_predict : Xs[0][1].shape = (2784, 9)
+X_test : Ts[0][0].shape = (1476, 9)
 Y_test : Ts[0][1].shape = (1476,)
 Neural Network - Start
-2022-12-10 11:32:25.096024: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-12-10 11:32:25.096253: W tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:265] failed call to cuInit: UNKNOWN ERROR (303)
-2022-12-10 11:32:25.096426: I tensorflow/compiler/xla/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (DESKTOP-LBDCVPO): /proc/driver/nvidia/version does not exist
-2022-12-10 11:32:25.099912: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-12-10 12:36:02.188358: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-12-10 12:36:02.188429: W tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:265] failed call to cuInit: UNKNOWN ERROR (303)
+2022-12-10 12:36:02.188455: I tensorflow/compiler/xla/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (DESKTOP-LBDCVPO): /proc/driver/nvidia/version does not exist
+2022-12-10 12:36:02.188763: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags. 
 Neural network :
-  Input layer :  7  neurons
-  Hidden layers :  3  layers of  7  neurons
+  Input layer :  9  neurons
+  Hidden layers :  3  layers of  9  neurons
   Output layer : 1 neuron
   Loss :  mean_squared_error
   Optimizer :  adam
@@ -65,70 +45,180 @@ Model: "sequential"
 _________________________________________________________________
  Layer (type)                Output Shape              Param #   
 =================================================================
- dense (Dense)               (None, 7)                 56
+ dense (Dense)               (None, 9)                 90
 
- dense_1 (Dense)             (None, 7)                 56
+ dense_1 (Dense)             (None, 9)                 90
 
- dense_2 (Dense)             (None, 7)                 56
+ dense_2 (Dense)             (None, 9)                 90
 
- dense_3 (Dense)             (None, 7)                 56
+ dense_3 (Dense)             (None, 9)                 90
 
- dense_4 (Dense)             (None, 1)                 8
+ dense_4 (Dense)             (None, 1)                 10
 
 =================================================================
-Total params: 232
-Trainable params: 232
+Total params: 370
+Trainable params: 370
 Non-trainable params: 0
 _________________________________________________________________
 None
-Regressor fitted | Time : 2886.783133506775
-87/87 [==============================] - 1s 1ms/step
-Predict Zone  0  | Time : 1.1942946910858154
+Epoch 1/50
+10/10 - 1s - loss: 0.1175 - 867ms/epoch - 87ms/step
+Epoch 2/50
+10/10 - 0s - loss: 0.1012 - 64ms/epoch - 6ms/step
+Epoch 3/50
+10/10 - 0s - loss: 0.0993 - 104ms/epoch - 10ms/step
+Epoch 4/50
+10/10 - 0s - loss: 0.0959 - 79ms/epoch - 8ms/step
+Epoch 5/50
+10/10 - 0s - loss: 0.0935 - 55ms/epoch - 5ms/step
+Epoch 6/50
+10/10 - 0s - loss: 0.0915 - 86ms/epoch - 9ms/step
+Epoch 7/50
+10/10 - 0s - loss: 0.0895 - 71ms/epoch - 7ms/step
+Epoch 8/50
+10/10 - 0s - loss: 0.0873 - 124ms/epoch - 12ms/step
+Epoch 9/50
+10/10 - 0s - loss: 0.0850 - 61ms/epoch - 6ms/step
+Epoch 10/50
+10/10 - 0s - loss: 0.0829 - 65ms/epoch - 7ms/step
+Epoch 11/50
+10/10 - 0s - loss: 0.0809 - 89ms/epoch - 9ms/step
+Epoch 12/50
+10/10 - 0s - loss: 0.0790 - 54ms/epoch - 5ms/step
+Epoch 13/50
+10/10 - 0s - loss: 0.0773 - 53ms/epoch - 5ms/step
+Epoch 14/50
+10/10 - 0s - loss: 0.0758 - 56ms/epoch - 6ms/step
+Epoch 15/50
+10/10 - 0s - loss: 0.0743 - 57ms/epoch - 6ms/step
+Epoch 16/50
+10/10 - 0s - loss: 0.0729 - 59ms/epoch - 6ms/step
+Epoch 17/50
+10/10 - 0s - loss: 0.0716 - 64ms/epoch - 6ms/step
+Epoch 18/50
+10/10 - 0s - loss: 0.0704 - 57ms/epoch - 6ms/step
+Epoch 19/50
+10/10 - 0s - loss: 0.0694 - 59ms/epoch - 6ms/step
+Epoch 20/50
+10/10 - 0s - loss: 0.0686 - 58ms/epoch - 6ms/step
+Epoch 21/50
+10/10 - 0s - loss: 0.0678 - 57ms/epoch - 6ms/step
+Epoch 22/50
+10/10 - 0s - loss: 0.0671 - 56ms/epoch - 6ms/step
+Epoch 23/50
+10/10 - 0s - loss: 0.0664 - 70ms/epoch - 7ms/step
+Epoch 24/50
+10/10 - 0s - loss: 0.0658 - 59ms/epoch - 6ms/step
+Epoch 25/50
+10/10 - 0s - loss: 0.0651 - 60ms/epoch - 6ms/step
+Epoch 26/50
+10/10 - 0s - loss: 0.0645 - 60ms/epoch - 6ms/step
+Epoch 27/50
+10/10 - 0s - loss: 0.0638 - 60ms/epoch - 6ms/step
+Epoch 28/50
+10/10 - 0s - loss: 0.0632 - 63ms/epoch - 6ms/step
+Epoch 29/50
+10/10 - 0s - loss: 0.0626 - 65ms/epoch - 6ms/step
+Epoch 30/50
+10/10 - 0s - loss: 0.0620 - 60ms/epoch - 6ms/step
+Epoch 31/50
+10/10 - 0s - loss: 0.0613 - 57ms/epoch - 6ms/step
+Epoch 32/50
+10/10 - 0s - loss: 0.0607 - 55ms/epoch - 6ms/step
+Epoch 33/50
+10/10 - 0s - loss: 0.0601 - 59ms/epoch - 6ms/step
+Epoch 34/50
+10/10 - 0s - loss: 0.0594 - 61ms/epoch - 6ms/step
+Epoch 35/50
+10/10 - 0s - loss: 0.0587 - 68ms/epoch - 7ms/step
+Epoch 36/50
+10/10 - 0s - loss: 0.0580 - 77ms/epoch - 8ms/step
+Epoch 37/50
+10/10 - 0s - loss: 0.0573 - 79ms/epoch - 8ms/step
+Epoch 38/50
+10/10 - 0s - loss: 0.0566 - 80ms/epoch - 8ms/step
+Epoch 39/50
+10/10 - 0s - loss: 0.0558 - 85ms/epoch - 9ms/step
+Epoch 40/50
+10/10 - 0s - loss: 0.0550 - 78ms/epoch - 8ms/step
+Epoch 41/50
+10/10 - 0s - loss: 0.0542 - 79ms/epoch - 8ms/step
+Epoch 42/50
+10/10 - 0s - loss: 0.0534 - 89ms/epoch - 9ms/step
+Epoch 43/50
+10/10 - 0s - loss: 0.0527 - 101ms/epoch - 10ms/step
+Epoch 44/50
+10/10 - 0s - loss: 0.0519 - 95ms/epoch - 10ms/step
+Epoch 45/50
+10/10 - 0s - loss: 0.0512 - 71ms/epoch - 7ms/step
+Epoch 46/50
+10/10 - 0s - loss: 0.0505 - 76ms/epoch - 8ms/step
+Epoch 47/50
+10/10 - 0s - loss: 0.0499 - 73ms/epoch - 7ms/step
+Epoch 48/50
+10/10 - 0s - loss: 0.0492 - 71ms/epoch - 7ms/step
+Epoch 49/50
+10/10 - 0s - loss: 0.0487 - 71ms/epoch - 7ms/step
+Epoch 50/50
+10/10 - 0s - loss: 0.0482 - 69ms/epoch - 7ms/step
+Regressor fitted | Time : 4.470966815948486
+87/87 [==============================] - 0s 1ms/step
+Predict Zone  0  | Time : 0.40334081649780273
     Ys[ 0 ][1].shape =  (2784,)
-87/87 [==============================] - 0s 2ms/step
-Predict Zone  1  | Time : 0.27954602241516113
+87/87 [==============================] - 0s 1ms/step
+Predict Zone  1  | Time : 0.2396717071533203
     Ys[ 1 ][1].shape =  (2784,)
-87/87 [==============================] - 0s 2ms/step
-Predict Zone  2  | Time : 0.26911401748657227
+87/87 [==============================] - 0s 1ms/step
+Predict Zone  2  | Time : 0.24112915992736816
     Ys[ 2 ][1].shape =  (2784,)
 87/87 [==============================] - 0s 1ms/step
-Predict Zone  3  | Time : 0.27529025077819824
+Predict Zone  3  | Time : 0.2355489730834961
     Ys[ 3 ][1].shape =  (2784,)
-87/87 [==============================] - 0s 2ms/step
-Predict Zone  4  | Time : 0.27616262435913086
-    Ys[ 4 ][1].shape =  (2784,)
-87/87 [==============================] - 0s 2ms/step
-Predict Zone  5  | Time : 0.2954590320587158
-    Ys[ 5 ][1].shape =  (2784,)
 87/87 [==============================] - 0s 1ms/step
-Predict Zone  6  | Time : 0.27550792694091797
+Predict Zone  4  | Time : 0.23708677291870117
+    Ys[ 4 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 1ms/step
+Predict Zone  5  | Time : 0.2487800121307373
+    Ys[ 5 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 2ms/step
+Predict Zone  6  | Time : 0.25874876976013184
     Ys[ 6 ][1].shape =  (2784,)
 87/87 [==============================] - 0s 1ms/step
-Predict Zone  7  | Time : 0.24698710441589355
+Predict Zone  7  | Time : 0.2196967601776123
     Ys[ 7 ][1].shape =  (2784,)
 87/87 [==============================] - 0s 1ms/step
-Predict Zone  8  | Time : 0.25318002700805664
+Predict Zone  8  | Time : 0.24055171012878418
     Ys[ 8 ][1].shape =  (2784,)
 87/87 [==============================] - 0s 1ms/step
-Predict Zone  9  | Time : 0.271073579788208
+Predict Zone  9  | Time : 0.23867273330688477
     Ys[ 9 ][1].shape =  (2784,)
-Expected error Zone  0  :  4.116767644882202
-Expected error Zone  1  :  6.383433938026428
-Expected error Zone  2  :  3.958357498049736
-Expected error Zone  3  :  4.5403726398944855
-Expected error Zone  4  :  2.647416666150093
-Expected error Zone  5  :  4.002955183386803
-Expected error Zone  6  :  3.662027418613434
-Expected error Zone  7  :  7.0976316928863525
-Expected error Zone  8  :  5.819626152515411
-Expected error Zone  9  :  3.717442601919174
-Mean Error :  4.594603143632412  %
-Neural Network - End : 2892.285468816757 seconds
+47/47 - 0s - loss: 0.0505 - 187ms/epoch - 4ms/step
+Expected error Zone  0  :  5.048026144504547
+47/47 - 0s - loss: 0.0586 - 126ms/epoch - 3ms/step
+Expected error Zone  1  :  5.858876556158066
+47/47 - 0s - loss: 0.0496 - 76ms/epoch - 2ms/step
+Expected error Zone  2  :  4.959333315491676
+47/47 - 0s - loss: 0.0517 - 78ms/epoch - 2ms/step
+Expected error Zone  3  :  5.16543872654438
+47/47 - 0s - loss: 0.0363 - 87ms/epoch - 2ms/step
+Expected error Zone  4  :  3.634050115942955
+47/47 - 0s - loss: 0.0456 - 80ms/epoch - 2ms/step
+Expected error Zone  5  :  4.562229663133621
+47/47 - 0s - loss: 0.0467 - 81ms/epoch - 2ms/step
+Expected error Zone  6  :  4.670953750610352
+47/47 - 0s - loss: 0.0755 - 87ms/epoch - 2ms/step
+Expected error Zone  7  :  7.5484782457351685
+47/47 - 0s - loss: 0.0591 - 85ms/epoch - 2ms/step
+Expected error Zone  8  :  5.911277234554291
+47/47 - 0s - loss: 0.0422 - 91ms/epoch - 2ms/step
+Expected error Zone  9  :  4.218914732336998
+Mean Error :  5.1577578485012054  %
+Neural Network - End : 8.732593774795532 seconds
 
 means = [0.30119341 0.31868576 0.43928306 0.29203384 0.30028048 0.35690003
  0.29652535 0.45448792 0.40477647 0.43168207]
 
-means_prediction = [0.38019535 0.35920548 0.41082031 0.40108612 0.38272256 0.39626488
- 0.38272256 0.40356085 0.41124251 0.39626488]
+means_prediction = [0.38095957 0.35981181 0.38467661 0.3761743  0.38090059 0.38865739       
+ 0.38090059 0.38921076 0.41695374 0.38865739]
 --------------------------------------------------------------------------------
 Submission files written
