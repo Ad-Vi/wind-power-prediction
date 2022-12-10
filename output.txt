@@ -1,33 +1,41 @@
-python3 submission.py -d true -t 0.1
+python3 submission.py -d True -t 0.1
+2022-12-10 11:32:17.538624: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-12-10 11:32:18.330747: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-12-10 11:32:18.330813: I tensorflow/compiler/xla/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set 
+up on your machine.
+2022-12-10 11:32:19.612450: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2022-12-10 11:32:19.612708: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2022-12-10 11:32:19.612747: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
 --Read files for zone 0--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9798767929306834 with U10), V100 (corr = 0.9795806522266491 with V10),
-Removed features (with correlation >= 0.9 ) :
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9798767929306834 with U10), V100 (corr = 0.9795806522266491 with V10), 
+Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 1--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9804381822084728 with U10), V100 (corr = 0.982455155189887 with V10),
-Removed features (with correlation >= 0.9 ) :
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9804381822084728 with U10), V100 (corr = 0.982455155189887 with V10), 
+Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 2--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9848346753178652 with U10), V100 (corr = 0.9848182696299067 with V10),
-Removed features (with correlation >= 0.9 ) :
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9848346753178652 with U10), V100 (corr = 0.9848182696299067 with V10), 
+Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 3--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9774928276294482 with U10), V100 (corr = 0.9805841832748018 with V10),
-Removed features (with correlation >= 0.9 ) :
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9774928276294482 with U10), V100 (corr = 0.9805841832748018 with V10), 
+Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 4--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 with V10),
-Removed features (with correlation >= 0.9 ) :
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 with V10), 
+Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 5--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10),
-Removed features (with correlation >= 0.9 ) :
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10), 
+Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 6--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9844155114381045 with U10), V100 (corr = 0.9833691816009995 with V10), 
 Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 7--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9800736945509834 with U10), V100 (corr = 0.9813904528317128 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.9800736945509834 with U10), V100 (corr = 0.9813904528317128 with V10), 
 Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 8--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.980615047817854 with U10), V100 (corr = 0.9811444594399613 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.980615047817854 with U10), V100 (corr = 0.9811444594399613 with V10), 
 Removed features (with correlation >= 0.9 ) :  
 --Read files for zone 9--
-Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10),
+Removed features (with correlation >= 0.9 ) :  U100 (corr = 0.985607832681871 with U10), V100 (corr = 0.9807957744302088 with V10), 
 Removed features (with correlation >= 0.9 ) :  
 Read input and output files
 
@@ -38,34 +46,89 @@ Y_train_all : Y_train_all.shape = (132840, 6)
 X_predict : Xs[0][1].shape = (2784, 7)
 X_test : Ts[0][0].shape = (1476, 7)
 Y_test : Ts[0][1].shape = (1476,)
-Random Forest - Start
-Regressor fitted | Time : 106.57002329826355
-Predict Zone  0  | Time : 0.18130016326904297
-Predict Zone  1  | Time : 0.14005517959594727
-Predict Zone  2  | Time : 0.14359307289123535
-Predict Zone  3  | Time : 0.16344118118286133
-Predict Zone  4  | Time : 0.18265676498413086
-Predict Zone  5  | Time : 0.22496509552001953
-Predict Zone  6  | Time : 0.14970064163208008
-Predict Zone  7  | Time : 0.14106297492980957
-Predict Zone  8  | Time : 0.13642287254333496
-Predict Zone  9  | Time : 0.1604292392730713
-Expected error Zone  0  :  0.1406165674444618
-Expected error Zone  1  :  0.1562783898650074
-Expected error Zone  2  :  0.1443284637625227
-Expected error Zone  3  :  0.12768288967946473
-Expected error Zone  4  :  0.10408837083882619
-Expected error Zone  5  :  0.12480838605175562
-Expected error Zone  6  :  0.13109810276160927
-Expected error Zone  7  :  0.17070595349461853
-Expected error Zone  8  :  0.141853124311011
-Expected error Zone  9  :  0.1406330623998904
-Mean Absolute Error :  13.820933106091676  %
-Random Forest - End : 109.39854454994202 seconds
+Neural Network - Start
+2022-12-10 11:32:25.096024: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-12-10 11:32:25.096253: W tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:265] failed call to cuInit: UNKNOWN ERROR (303)
+2022-12-10 11:32:25.096426: I tensorflow/compiler/xla/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (DESKTOP-LBDCVPO): /proc/driver/nvidia/version does not exist
+2022-12-10 11:32:25.099912: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Neural network :
+  Input layer :  7  neurons
+  Hidden layers :  3  layers of  7  neurons
+  Output layer : 1 neuron
+  Loss :  mean_squared_error
+  Optimizer :  adam
+  Activation :  relu
+  Kernel initializer :  he_uniform
+  Model summary :
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense (Dense)               (None, 7)                 56
+
+ dense_1 (Dense)             (None, 7)                 56
+
+ dense_2 (Dense)             (None, 7)                 56
+
+ dense_3 (Dense)             (None, 7)                 56
+
+ dense_4 (Dense)             (None, 1)                 8
+
+=================================================================
+Total params: 232
+Trainable params: 232
+Non-trainable params: 0
+_________________________________________________________________
+None
+Regressor fitted | Time : 2886.783133506775
+87/87 [==============================] - 1s 1ms/step
+Predict Zone  0  | Time : 1.1942946910858154
+    Ys[ 0 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 2ms/step
+Predict Zone  1  | Time : 0.27954602241516113
+    Ys[ 1 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 2ms/step
+Predict Zone  2  | Time : 0.26911401748657227
+    Ys[ 2 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 1ms/step
+Predict Zone  3  | Time : 0.27529025077819824
+    Ys[ 3 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 2ms/step
+Predict Zone  4  | Time : 0.27616262435913086
+    Ys[ 4 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 2ms/step
+Predict Zone  5  | Time : 0.2954590320587158
+    Ys[ 5 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 1ms/step
+Predict Zone  6  | Time : 0.27550792694091797
+    Ys[ 6 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 1ms/step
+Predict Zone  7  | Time : 0.24698710441589355
+    Ys[ 7 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 1ms/step
+Predict Zone  8  | Time : 0.25318002700805664
+    Ys[ 8 ][1].shape =  (2784,)
+87/87 [==============================] - 0s 1ms/step
+Predict Zone  9  | Time : 0.271073579788208
+    Ys[ 9 ][1].shape =  (2784,)
+Expected error Zone  0  :  4.116767644882202
+Expected error Zone  1  :  6.383433938026428
+Expected error Zone  2  :  3.958357498049736
+Expected error Zone  3  :  4.5403726398944855
+Expected error Zone  4  :  2.647416666150093
+Expected error Zone  5  :  4.002955183386803
+Expected error Zone  6  :  3.662027418613434
+Expected error Zone  7  :  7.0976316928863525
+Expected error Zone  8  :  5.819626152515411
+Expected error Zone  9  :  3.717442601919174
+Mean Error :  4.594603143632412  %
+Neural Network - End : 2892.285468816757 seconds
 
 means = [0.30119341 0.31868576 0.43928306 0.29203384 0.30028048 0.35690003
  0.29652535 0.45448792 0.40477647 0.43168207]
 
-means_prediction = [0.30965426 0.36099151 0.42660446 0.29731683 0.32610089 0.37328556
- 0.32502408 0.44990034 0.41669743 0.44199494]
+means_prediction = [0.38019535 0.35920548 0.41082031 0.40108612 0.38272256 0.39626488
+ 0.38272256 0.40356085 0.41124251 0.39626488]
+--------------------------------------------------------------------------------
 Submission files written

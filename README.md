@@ -47,7 +47,8 @@ Expected error is Mean Absolute error (MAE), exepted when MSE is written and for
 |27 |ʕ•ᴥ•ʔ ʕ•ᴥ•ʔ|0.1855171110453776|0.14418710077268204 | [RF, 500 trees regressor on all zones](https://github.com/Ad-Vi/wind-power-prediction/commit/5b22d107c31b1a325305914676629c77097fd6f8) |  704.69 | |
 |41|ʕ•ᴥ•ʔ|0.24377415359099888|0.23252893098076502| [epsSVR, rbf kernel, test 10%](https://github.com/Ad-Vi/wind-power-prediction/commit/b3c6cd75b3a7d2102d4fe6979dc821bf79818638) | 1015.973 |  7.753 (MSE)|
 |40|ʕ•ᴥ•ʔ|0.1956323910427123|0.1664162858748583|[RF, 100 trees, test 10%, correlation FE, MAE](https://github.com/Ad-Vi/wind-power-prediction/commit/c739b9d8a4e07c899da7ceb306cc52c605c05fb6)|109.398|13.82|
-|40|oups|0.2556024822676563|0.2663099177565241|ANN, 3 hidden layers, test 10%| 12.077|7.29|
+|40|oups|0.2556024822676563|0.2663099177565241|[ANN, 3 hidden layers, test 10%, correlation FE](https://github.com/Ad-Vi/wind-power-prediction/commit/a6f6468ee0871737b71df37bb6ec4155f3d15308)| 12.077|7.29|
+|38|oups|0.202639853415171|0.17902481850330204|ANN, 3 hidden layers, test 10%, correlation FE, 150 epochs, minibatch| 2892.28|4.59|
 
 ### Unsubmitted tries
 

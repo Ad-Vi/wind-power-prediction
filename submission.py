@@ -232,7 +232,7 @@ if __name__ == '__main__':
         print('Neural Network - Start')
     regressor = construct_Neural_network(x_size=Xs[0][0].shape[1], nbr_layers=5, does_print=does_print)
     t = time.time()
-    regressor.fit(X_train_all, Y_train_all['TARGETVAR'])
+    regressor.fit(X_train_all, Y_train_all['TARGETVAR'], epochs=150, batch_size=10, verbose=0)
     if does_print:
         print("Regressor fitted | Time :", str(time.time()-t))
     t = time.time()
