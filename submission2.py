@@ -30,10 +30,6 @@ def feature_vec_to_ts(feature_vec):
     date = datetime(year, month, day, hour)
     return datetime.timestamp(date)
 
-#def n_hours(start, end):
-
-
-
 def split_train_test(X, Y):
     """
     Split the input dataset (X, Y) into training and testing sets, where
@@ -107,7 +103,7 @@ if __name__ == '__main__':
 
             for k, value in enumerate(Xs[i][1][feature]):
                 X_test[i][k][j] = value
-        # X_train[i] = scale_data(X_train[i], n_features)
+        # X_train[i] = scale_data(X_train[i], n_features) # worse when data scaled
         # X_test[i] = scale_data(X_test[i], n_features)
 
         # Dates
@@ -137,10 +133,10 @@ if __name__ == '__main__':
             ts = feature_vec_to_ts(feature_vec)
             X_test[i][j][n_features - 1] = date_weight * (ts - first_ts) / (last_ts - first_ts)
 
-    recompute = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    n_neighbors = [24, 23, 987, 600, 61, 50, 64, 3676, 380, 589] # not scaled
+    compute_indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    n_neighbors = [24, 23, 987, 600, 61, 50, 64, 3676, 380, 589]
 
-    for i in recompute:
+    for i in compute_indexes:
         print(i)
         knn = KNeighborsRegressor(n_neighbors=n_neighbors[i], weights=weights)
         knn.fit(X_train[i], Y_train[i])
