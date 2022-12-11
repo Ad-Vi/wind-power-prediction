@@ -33,6 +33,7 @@ Expected error is Mean Absolute error (MAE), exepted when MSE is written and for
 
 | Position |     name      |     MAE_GLOB         |      MAE_Z1          |   method                      | calculation time (s)| Expected error (%)|
 |:---------|:--------------|:--------------------:|:--------------------:|:--------------------------:|--------------------:|------------------:|
+|33        |               | 0.18534205128981526  | 0.1433400154576143   | [random forest with 1000 trees]: | |
 |    27    |    ʕ•ᴥ•ʔ      | 0.2780296804948635   | 0.2707220813681427   |  [mean](https://github.com/Ad-Vi/wind-power-prediction/commit/e66df5a3bb3429b5176c79e960009aba96769c51)                        | | |
 |   23     | (｡◕‿◕｡)       | 0.20197477113320383  |0.16355695113016427   |  [kNN with k=10](https://github.com/Ad-Vi/wind-power-prediction/commit/5a5865a4be8c86ada9f4448f34f1df1dcee06f02)               | | |
 |22        | ʕ•ᴥ•ʔ         | 0.19558727990167069   |0.17447651350699664  |  [kNN with k = 100](https://github.com/Ad-Vi/wind-power-prediction/commit/b9dda65d8e58a1123ce24bc95e00bba33c18ad51)            | | |
