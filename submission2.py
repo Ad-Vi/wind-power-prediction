@@ -58,6 +58,8 @@ if __name__ == '__main__':
 
     # Fit your models here
     print(N_ZONES * len(Xs[0][0]['ZONEID']))
+    features = ['U10', 'U100', 'V10', 'V100']
+    n_features = len(features)
     train_size = len(Xs[0][0]['ZONEID'])
     test_size = len(Xs[0][1]['ZONEID'])
     X_train = np.zeros((N_ZONES, train_size, 9))
@@ -66,21 +68,34 @@ if __name__ == '__main__':
 
     for i in range(N_ZONES):
         for j, column in enumerate(Xs[i][0]):
-            for k, value in enumerate(Xs[i][0][column]):
-                X_train[i][k][j] = value
-
-            for k, value in enumerate(Xs[i][1][column]):
-                X_test[i][k][j] = value
+            try:
+                index = features.index(column)
+                for k, value in enumerate(Xs[i][0][column]):
+                    X_train[i][k][index] = value
+            except ValueError:
+                continue
+            try:
+                index = features.index(column)
+                for k, value in enumerate(Xs[i][1][column]):
+                    X_test[i][k][index] = value
+            except ValueError:
+                continue
         
         for k, value in enumerate(Ys[i]['TARGETVAR']):
             Y_train[i][k] = value
 
+    
+    print("yeah")
 
     for i in range(N_ZONES):
-        forest = RandomForestRegressor(n_estimators=1000)
+        print(i)
+        forest = RandomForestRegressor(n_estimators=100)
         forest.fit(X_train[i], Y_train[i])
-        predict = forest.predict(X_test[i])
-        Y_test = pd.Series(predict, index=range(len(Xs[i][1])), name='TARGETVAR')
+        #knn = KNeighborsRegressor()
+        #knn.fit(X_train[i], Y_train[i])
+        predictions = forest.predict(X_test[i])
+
+        Y_test = pd.Series(predictions, index=range(len(Xs[i][1])), name='TARGETVAR')
         Y_test.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
 
     #knn = KNeighborsRegressor(n_neighbors=5)
