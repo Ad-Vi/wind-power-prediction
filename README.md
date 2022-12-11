@@ -51,6 +51,7 @@ Expected error is Mean Absolute error (MAE), exepted when MSE is written and for
 |38|oups|0.202639853415171|0.17902481850330204|[ANN, 3 hidden layers, test 10%, correlation FE, 150 epochs, minibatch](https://github.com/Ad-Vi/wind-power-prediction/commit/12fde700fc57bb8a27feee1cfe46fb59c2953a8d)| 2892.28|4.59|
 |38|ʕ•ᴥ•ʔ|0.1978985906637341|0.17943384394762932|ANN, 3 hidden layers, test 10%, 50 epochs, batch 1/10| 8.73 |5.1577|
 |33        |               | 0.18534205128981526  | 0.1433400154576143   | [random forest with 1000 trees](https://github.com/Ad-Vi/wind-power-prediction/tree/91fd948e9ffa8692c191f30a0cd639216553672c) | |
+|37 ||0.186403 | 0.14428083125228475 | [random forest with 4 features (speeds) and 100 trees](https://github.com/Ad-Vi/wind-power-prediction/tree/7d5385ee5a9ff26fbe9f00adadda3b578efa192f) ||
 
 ### Unsubmitted tries
 
