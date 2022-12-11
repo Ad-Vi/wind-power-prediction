@@ -3,8 +3,10 @@ import numpy as np
 import pandas as pd
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import RandomForestRegressor
-import datetime
+from datetime import datetime
 
+def weights(distances):
+    return 1 / (distances + 10)
 
 def scale_data(X, n_features):
     max_features = np.full(n_features, -np.inf)
@@ -19,6 +21,14 @@ def scale_data(X, n_features):
     range_features = max_features - min_features
     X /= range_features
     return X
+
+def feature_vec_to_ts(feature_vec):
+    year = int(feature_vec[3])
+    month = int(feature_vec[2])
+    day = int(feature_vec[1])
+    hour = int(feature_vec[0])
+    date = datetime(year, month, day, hour)
+    return datetime.timestamp(date)
 
 #def n_hours(start, end):
 
@@ -77,8 +87,8 @@ if __name__ == '__main__':
 
     # Fit your models here
     features = ['U10', 'U100', 'V10', 'V100']
-    date_features = ['Day', 'Month', 'Year', 'Hour']
-    n_features = len(features)
+    date_features = ['Hour', 'Day', 'Month', 'Year']
+    n_features = len(features) + 1 # + 1 for timestamp
     n_date_features = len(date_features)
     train_size = len(Xs[0][0]['ZONEID'])
     test_size = len(Xs[0][1]['ZONEID'])
@@ -113,21 +123,31 @@ if __name__ == '__main__':
         for k, value in enumerate(Ys[i]['TARGETVAR']):
             Y_train[i][k] = value
 
+    date_weight = .1
+    for i in range(N_ZONES):
+        first_ts = feature_vec_to_ts(train_dates[i][0])
+        last_ts = feature_vec_to_ts(train_dates[i][train_size - 1])
+        for j, feature_vec in enumerate(train_dates[i]):
+            ts = feature_vec_to_ts(feature_vec)
+            X_train[i][j][n_features - 1] = date_weight * (ts - first_ts) / (last_ts - first_ts)
+        
+        first_ts = feature_vec_to_ts(test_dates[i][0])
+        last_ts = feature_vec_to_ts(test_dates[i][test_size - 1])
+        for j, feature_vec in enumerate(test_dates[i]):
+            ts = feature_vec_to_ts(feature_vec)
+            X_test[i][j][n_features - 1] = date_weight * (ts - first_ts) / (last_ts - first_ts)
+
     recompute = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     n_neighbors = [24, 23, 987, 600, 61, 50, 64, 3676, 380, 589] # not scaled
 
     for i in recompute:
         print(i)
-        knn = KNeighborsRegressor(n_neighbors=n_neighbors[i])
+        knn = KNeighborsRegressor(n_neighbors=n_neighbors[i], weights=weights)
         knn.fit(X_train[i], Y_train[i])
         predictions = knn.predict(X_test[i])
 
         Y_test = pd.Series(predictions, index=range(len(Xs[i][1])), name='TARGETVAR')
         Y_test.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
-
-    #knn = KNeighborsRegressor(n_neighbors=5)
-    #knn.fit(X_train, Y_train)
-    #print(knn.predict(X_test))
     
 
     # Example: predict global training mean for each zone
