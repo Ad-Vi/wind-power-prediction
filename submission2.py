@@ -3,6 +3,25 @@ import numpy as np
 import pandas as pd
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import RandomForestRegressor
+import datetime
+
+
+def scale_data(X, n_features):
+    max_features = np.full(n_features, -np.inf)
+    min_features = np.full(n_features, np.inf)
+    for feature_vec in X:
+        for j, feature in enumerate(feature_vec):
+            if max_features[j] < feature:
+                max_features[j] = feature
+            if min_features[j] > feature:
+                min_features[j] = feature
+
+    range_features = max_features - min_features
+    X /= range_features
+    return X
+
+#def n_hours(start, end):
+
 
 
 def split_train_test(X, Y):
@@ -57,38 +76,45 @@ if __name__ == '__main__':
             Ys[i] = Y_train
 
     # Fit your models here
-    print(N_ZONES * len(Xs[0][0]['ZONEID']))
     features = ['U10', 'U100', 'V10', 'V100']
+    date_features = ['Day', 'Month', 'Year', 'Hour']
     n_features = len(features)
+    n_date_features = len(date_features)
     train_size = len(Xs[0][0]['ZONEID'])
     test_size = len(Xs[0][1]['ZONEID'])
-    X_train = np.zeros((N_ZONES, train_size, 9))
-    X_test = np.zeros((N_ZONES, test_size, 9))
+    X_train = np.zeros((N_ZONES, train_size, n_features))
+    X_test = np.zeros((N_ZONES, test_size, n_features))
     Y_train = np.zeros((N_ZONES, train_size))
 
+    train_dates = np.zeros((N_ZONES, train_size, n_date_features))
+    test_dates = np.zeros((N_ZONES, test_size, n_date_features))
+
     for i in range(N_ZONES):
-        for j, column in enumerate(Xs[i][0]):
-            try:
-                index = features.index(column)
-                for k, value in enumerate(Xs[i][0][column]):
-                    X_train[i][k][index] = value
-            except ValueError:
-                continue
-            try:
-                index = features.index(column)
-                for k, value in enumerate(Xs[i][1][column]):
-                    X_test[i][k][index] = value
-            except ValueError:
-                continue
+        # Inputs
+        for j, feature in enumerate(features):
+            for k, value in enumerate(Xs[i][0][feature]):
+                X_train[i][k][j] = value
+
+            for k, value in enumerate(Xs[i][1][feature]):
+                X_test[i][k][j] = value
+        # X_train[i] = scale_data(X_train[i], n_features)
+        # X_test[i] = scale_data(X_test[i], n_features)
+
+        # Dates
+        for j, feature in enumerate(date_features):
+            for k, value in enumerate(Xs[i][0][feature]):
+                train_dates[i][k][j] = value
         
+        for j, feature in enumerate(date_features):
+            for k, value in enumerate(Xs[i][1][feature]):
+                test_dates[i][k][j] = value
+        
+        # Outputs
         for k, value in enumerate(Ys[i]['TARGETVAR']):
             Y_train[i][k] = value
 
-    
-    print("yeah")
-
-    recompute = [9]
-    n_neighbors = [24, 23, 987, 600, 61, 50, 64, 3676, 380, 589]
+    recompute = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    n_neighbors = [24, 23, 987, 600, 61, 50, 64, 3676, 380, 589] # not scaled
 
     for i in recompute:
         print(i)
