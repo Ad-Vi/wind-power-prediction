@@ -87,12 +87,11 @@ if __name__ == '__main__':
     
     print("yeah")
 
+    n_neighbors = [24, 123, 123, 123, 123, 123, 123, 123, 123, 123]
+
     for i in range(N_ZONES):
         print(i)
-        #forest = RandomForestRegressor(n_estimators=100)
-        #forest.fit(X_train[i], Y_train[i])
-        #predictions = forest.predict(X_test[i])
-        knn = KNeighborsRegressor(n_neighbors=123)
+        knn = KNeighborsRegressor(n_neighbors=n_neighbors[i])
         knn.fit(X_train[i], Y_train[i])
         predictions = knn.predict(X_test[i])
 
