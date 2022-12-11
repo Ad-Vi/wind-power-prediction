@@ -89,11 +89,12 @@ if __name__ == '__main__':
 
     for i in range(N_ZONES):
         print(i)
-        forest = RandomForestRegressor(n_estimators=100)
-        forest.fit(X_train[i], Y_train[i])
-        #knn = KNeighborsRegressor()
-        #knn.fit(X_train[i], Y_train[i])
-        predictions = forest.predict(X_test[i])
+        #forest = RandomForestRegressor(n_estimators=100)
+        #forest.fit(X_train[i], Y_train[i])
+        #predictions = forest.predict(X_test[i])
+        knn = KNeighborsRegressor(n_neighbors=20)
+        knn.fit(X_train[i], Y_train[i])
+        predictions = knn.predict(X_test[i])
 
         Y_test = pd.Series(predictions, index=range(len(Xs[i][1])), name='TARGETVAR')
         Y_test.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
