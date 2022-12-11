@@ -57,6 +57,7 @@ Expected error is Mean Absolute error (MAE), exepted when MSE is written and for
 |1||0.176793|0.1395687|[kNN adjusted n_neighbors 4 features](https://github.com/Ad-Vi/wind-power-prediction/tree/48cc69f9821a5731b9a60caaab9c3f3b5b197f1e)||
 |2||0.176786|0.1395687|[kNN adjusted n_neighbors 4 features](https://github.com/Ad-Vi/wind-power-prediction/tree/e2cc017feac8d477734ca7c8788e87d318309ba6)||
 |2||0.176752|0.139393|[kNN adjusted neighbors feature_vec = (speeds + timestamp)](https://github.com/Ad-Vi/wind-power-prediction/tree/30370e7991afe740bc89dd6e3b13c7a1123f676e)
+|41|Adrien & Emil|0.3966516599325793|0.2942257636466016|ANN, 1 per zone, 3HL, test 10%, 50 epochs, batch 10%|18.673|19.22|
 
 ### Unsubmitted tries
 

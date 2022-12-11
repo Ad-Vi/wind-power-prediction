@@ -12,7 +12,12 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn import svm
 import keras
 
+outputFile = open('output.txt', 'w')
 
+def printing(text):
+    print(text)
+    if outputFile:
+        outputFile.write(str(text))
 
 def split_train_test(X, Y):
     """
@@ -67,7 +72,7 @@ def expected_error(regressor, X_test, Y_test, is_neural_network=False):
         E = (1/test_size) * np.sum(np.abs((Y_test - predictions))) # MAE
         return E
 
-def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initializer='he_uniform', loss='mean_squared_error', optimizer='adam', does_print=False):
+def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initializer='he_uniform', loss='mean_squared_error', optimizer='adam', does_printing=False):
     model = keras.models.Sequential()
     # add input layer
     model.add(keras.layers.Dense(x_size, input_dim=x_size, activation=activation, kernel_initializer=kernel_initializer))
@@ -81,26 +86,26 @@ def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initi
     
     # compile model
     model.compile(loss=loss, optimizer=optimizer)
-    if does_print:
-        print("Neural network :")
-        print("  Input layer : ", x_size, " neurons")
-        print("  Hidden layers : ", nbr_layers-2, " layers of ", x_size, " neurons")
-        print("  Output layer : 1 neuron")
-        print("  Loss : ", loss)
-        print("  Optimizer : ", optimizer)
-        print("  Activation : ", activation)
-        print("  Kernel initializer : ", kernel_initializer)
-        print("  Model summary :")
-        print(model.summary())
+    if does_printing:
+        printing("Neural network :")
+        printing("  Input layer : "+str(x_size)+" neurons")
+        printing("  Hidden layers : "+str(nbr_layers-2)+" layers of "+str(x_size)+" neurons")
+        printing("  Output layer : 1 neuron")
+        printing("  Loss : "+str(loss))
+        printing("  Optimizer : "+str(optimizer))
+        printing("  Activation : "+str(activation))
+        printing("  Kernel initializer : "+str(kernel_initializer))
+        printing("  Model summary :")
+        printing(model.summary())
     
     return model
 
-def feature_selection(data, does_print = False):
-    # return variance_treshold_feature_selection(data, does_print=does_print)
-    # return correlation_feature_extraction(data, does_print=does_print)
-    return data
+def feature_selection(data, does_printing = False):
+    return variance_treshold_feature_selection(data, does_printing=does_printing)
+    # return correlation_feature_extraction(data, does_printing=does_printing)
+    # return data
 
-def variance_treshold_feature_selection(data, treshold=1e-6, does_print=False):
+def variance_treshold_feature_selection(data, treshold=1e-6, does_printing=False):
     data_copy = data.copy()
     variances = data.var(numeric_only = True)
     removed = []
@@ -108,25 +113,25 @@ def variance_treshold_feature_selection(data, treshold=1e-6, does_print=False):
         if variances[i] < treshold:
             removed += [data.columns[i]]
             data_copy.drop(data_copy.columns[i], axis=1, inplace=True)
-    if does_print:
+    if does_printing:
         if len(removed) > 0:
-            print("  Initial features :")
-            print(data.columns)
-            print("  Variances :")
-            print(variances)
-            print("  Selected features :")
-            print(data_copy.columns)
-            print("  Removed features :")
-            print(removed)
+            printing("  Initial features :")
+            printing(data.columns)
+            printing("  Variances :")
+            printing(variances)
+            printing("  Selected features :")
+            printing(data_copy.columns)
+            printing("  Removed features :")
+            printing(removed)
         else:
-            print("  No features removed. Features :")
-            print(data_copy.columns)
+            printing("  No features removed. Features :")
+            printing(data_copy.columns)
     return data_copy
 
-def correlation_feature_extraction(data, treshold=0.9, does_print=False):
+def correlation_feature_extraction(data, treshold=0.9, does_printing=False):
     corr = data.corr()
     remove, removed = [], []
-    feature_to_print = ''
+    feature_to_printing = ''
     data_copy = data.copy()
     for i in range(len(data_copy.columns)):
         for j in range(i+1, len(data_copy.columns)):
@@ -138,29 +143,28 @@ def correlation_feature_extraction(data, treshold=0.9, does_print=False):
         if feature != 'TARGETVAR' and feature not in removed:
             removed +=[feature]
             data_copy.drop(feature, axis=1, inplace=True)
-            feature_to_print += feature + ' (corr = ' + str(correlation) + ' with '+str(feature2)+'), '
-    if does_print:
-        print('Removed features (with correlation >=', treshold, ') : ', feature_to_print)
+            feature_to_printing += feature + ' (corr = ' + str(correlation) + ' with '+str(feature2)+'), '
+    if does_printing:
+        printing('Removed features (with correlation >='+str(treshold)+ ') : '+str(feature_to_printing))
         corr.to_csv("useless/correlation.csv", float_format='%.6f')
         plt.figure()
         plt.plot
         sns.heatmap(corr)
         plt.savefig('useless/correlation.png')
     return data_copy
-        
 
 if __name__ == '__main__':
     # Parse arguments
     parser = ArgumentParser()
-    # Print : whether information are printed during the computing or not
-    parser.add_argument('-d', '--display', type=lambda x: (str(x).lower() == 'true'), default=False, help='print or not information while computing. Default : False')
+    # printing : whether information are printinged during the computing or not
+    parser.add_argument('-d', '--display', type=lambda x: (str(x).lower() == 'true'), default=False, help='printing or not information while computing. Default : False')
     # Test size : proportion of the data used to test our model. By default nul.
     parser.add_argument('-t', '--test_size', type=float, default=0, help='proportion of the data used for test. Default : 0')
 
     mode = "full learn"
     # Argument values
     args = parser.parse_args()
-    does_print = args.display
+    does_printing = args.display
     test_size = args.test_size
     if test_size != 0:
         test_size = args.test_size
@@ -179,10 +183,10 @@ if __name__ == '__main__':
     X_train_all = pd.DataFrame()
     Y_train_all = pd.DataFrame()
     for i in range(N_ZONES):
-        if does_print:
-            print("--Read files for zone "+str(i)+"--")
-        Xs.append(feature_selection(pd.read_csv(X_format.format(i=i+1)), does_print=does_print))
-        Ys.append(feature_selection(pd.read_csv(Y_format.format(i=i+1)), does_print=does_print))
+        if does_printing:
+            printing("--Read files for zone "+str(i)+"--")
+        Xs.append(feature_selection(pd.read_csv(X_format.format(i=i+1)), does_printing=does_printing))
+        Ys.append(feature_selection(pd.read_csv(Y_format.format(i=i+1)), does_printing=does_printing))
         Ts.append(None)
         # Flatten temporal dimension (NOTE: this step is not compulsory)
         if flatten:
@@ -214,44 +218,45 @@ if __name__ == '__main__':
             Ys[i] = Y_train
             X_train_all = pd.concat([X_train_all, X_train])
             Y_train_all = pd.concat([Y_train_all, Y_train])
-    if does_print:
-        print('Read input and output files\n')
-        print('X_train : Xs[0][0].shape =', Xs[0][0].shape)
-        print('Y_train : Ys[0].shape =', Ys[0].shape)
-        print('X_train_all : X_train_all.shape =', X_train_all.shape)
-        print('Y_train_all : Y_train_all.shape =', Y_train_all.shape)
-        print('X_predict : Xs[0][1].shape =', Xs[0][1].shape)
+    if does_printing:
+        printing('Read input and output files\n')
+        printing('X_train : Xs[0][0].shape ='+str(Xs[0][0].shape))
+        printing('Y_train : Ys[0].shape ='+str(Ys[0].shape))
+        printing('X_train_all : X_train_all.shape ='+str( X_train_all.shape))
+        printing('Y_train_all : Y_train_all.shape ='+str(Y_train_all.shape))
+        printing('X_predict : Xs[0][1].shape '+str(Xs[0][1].shape))
         if mode == "learn and test":
-            print('X_test : Ts[0][0].shape =', Ts[0][0].shape)
-            print('Y_test : Ts[0][1].shape =', Ts[0][1].shape)
+            printing('X_test : Ts[0][0].shape ='+str(Ts[0][0].shape))
+            printing('Y_test : Ts[0][1].shape ='+str(Ts[0][1].shape))
     # Fit your models here
     
     # Learning algorithm -------------------------------------
     start = time.time()
-    if does_print:
-        print('Neural Network - Start')
-    regressor = construct_Neural_network(x_size=Xs[0][0].shape[1], nbr_layers=5, does_print=does_print)
-    t = time.time()
-    regressor.fit(X_train_all, Y_train_all['TARGETVAR'], epochs=50, batch_size=int(X_train_all.shape[0]/10), verbose=0)
-    if does_print:
-        print("Regressor fitted | Time :", str(time.time()-t))
+    if does_printing:
+        printing('Neural Network - Start')
+        verbose = 2
     t = time.time()
     for i in range(N_ZONES):
+        regressor = construct_Neural_network(x_size=Xs[0][0].shape[1], nbr_layers=5, does_printing=does_printing)
+        regressor.fit(Xs[i][0], Ys[i]['TARGETVAR'], epochs=50, batch_size=int(X_train_all.shape[0]/10), verbose=verbose)
+        if does_printing:
+            printing("Regressor for zone"+str(i)+" constructed and fitted | Time :"+str(time.time()-t))
+        t = time.time()
         Ys[i] = (Ys[i], np.array(regressor.predict(Xs[i][1])).flatten())
-        if does_print:
-            print("Predict Zone ", i, " | Time :", str(time.time()-t))
-            print("    Ys[",i,"][1].shape = ", Ys[i][1].shape)
+        if does_printing:
+            printing("Predict Zone "+str(i)+" | Time :"+str(time.time()-t))
+            printing("    Ys["+str(i)+"][1].shape = "+str(Ys[i][1].shape))
         t = time.time()
     if mode == "learn and test":
         for i in range(N_ZONES):
             E = expected_error(regressor, Ts[i][0], Ts[i][1], is_neural_network=True)
             Ms.append(E)
-            if does_print:
-                print("Expected error Zone ", i, " : ", E)
-        print("Mean Error : ", np.mean(Ms), " %")
+            if does_printing:
+                printing("Expected error Zone "+str(i)+" : "+str(E))
+        printing("Mean Error : "+str(np.mean(Ms))+" %")
         
-    if does_print:
-        print('Neural Network - End : ' + str(time.time() - start) + ' seconds')
+    if does_printing:
+        printing('Neural Network - End : ' + str(time.time() - start) + ' seconds')
 
     # Example: predict global training mean for each zone
     means = np.zeros(N_ZONES)
@@ -259,15 +264,15 @@ if __name__ == '__main__':
     for i in range(N_ZONES):
         means[i] = Ys[i][0]['TARGETVAR'].mean()
         means_prediction[i] = Ys[i][1].mean()
-    if does_print:
-        print('\nmeans =', means)
-        print('\nmeans_prediction =', means_prediction)
+    if does_printing:
+        printing('\nmeans ='+str(means))
+        printing('\nmeans_prediction ='+str(means_prediction))
 
     # Write submission files (1 per zone). The predicted test series must
     # follow the order of X_predict.
-    print("--------------------------------------------------------------------------------")
+    printing("--------------------------------------------------------------------------------")
     for i in range(N_ZONES):
         Y_predict = pd.Series(Ys[i][1], index=range(len(Xs[i][1])), name='TARGETVAR')
         Y_predict.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
-    if does_print:
-        print('Submission files written')
+    if does_printing:
+        printing('Submission files written')
