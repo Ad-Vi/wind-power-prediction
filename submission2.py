@@ -92,7 +92,7 @@ if __name__ == '__main__':
         #forest = RandomForestRegressor(n_estimators=100)
         #forest.fit(X_train[i], Y_train[i])
         #predictions = forest.predict(X_test[i])
-        knn = KNeighborsRegressor(n_neighbors=20)
+        knn = KNeighborsRegressor(n_neighbors=123)
         knn.fit(X_train[i], Y_train[i])
         predictions = knn.predict(X_test[i])
 
