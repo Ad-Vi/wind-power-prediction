@@ -87,9 +87,10 @@ if __name__ == '__main__':
     
     print("yeah")
 
-    n_neighbors = [24, 123, 123, 123, 123, 123, 123, 123, 123, 123]
+    recompute = [9]
+    n_neighbors = [24, 23, 987, 600, 61, 50, 64, 3676, 380, 589]
 
-    for i in range(N_ZONES):
+    for i in recompute:
         print(i)
         knn = KNeighborsRegressor(n_neighbors=n_neighbors[i])
         knn.fit(X_train[i], Y_train[i])
