@@ -61,7 +61,7 @@ Expected error is Mean Absolute error (MAE), exepted when MSE is written and for
 |41|Adrien & Emil|0.3966516599325793|0.2942257636466016|[ANN, 1 per zone, 3HL, test 10%, 50 epochs, batch 10%](https://github.com/Ad-Vi/wind-power-prediction/commit/699ce9f2f304d95a2514efee9eedf2ac4269defe)|18.673|19.22|
 
 Our chosen implementation for the final submission was [kNN adjusted neighbors feature_vec = (speeds + timestamp)](https://github.com/Ad-Vi/wind-power-prediction/tree/30370e7991afe740bc89dd6e3b13c7a1123f676e) which leads to a score of 0.176752 on the public leaderboard.  
-The final ranking can be found in the [leaderboard].
+The final ranking can be found in the [leaderboard](https://github.com/Ad-Vi/wind-power-prediction/blob/main/leaderboard.md).
 
 ## References
 
