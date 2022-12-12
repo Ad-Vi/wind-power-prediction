@@ -10,11 +10,12 @@ The code is located in the file `submission.py`. It performs the following steps
 
 1. Load the data
 2. Perform or not feature extraction
-3. Split the data
-4. Train the model
-5. Predict the values
-6. Calculate the error
-7. Write the predictions in submission files
+3. Perform or not data scaling
+4. Split the data
+5. Train the model
+6. Predict the values
+7. Calculate the error
+8. Write the predictions in submission files
 
 **Usage**:
 Run it with python3 with the following parameters.
@@ -57,11 +58,8 @@ Expected error is Mean Absolute error (MAE), exepted when MSE is written and for
 |1||0.176793|0.1395687|[kNN adjusted n_neighbors 4 features](https://github.com/Ad-Vi/wind-power-prediction/tree/48cc69f9821a5731b9a60caaab9c3f3b5b197f1e)||
 |2||0.176786|0.1395687|[kNN adjusted n_neighbors 4 features](https://github.com/Ad-Vi/wind-power-prediction/tree/e2cc017feac8d477734ca7c8788e87d318309ba6)||
 |2||0.176752|0.139393|[kNN adjusted neighbors feature_vec = (speeds + timestamp)](https://github.com/Ad-Vi/wind-power-prediction/tree/30370e7991afe740bc89dd6e3b13c7a1123f676e)
-|41|Adrien & Emil|0.3966516599325793|0.2942257636466016|ANN, 1 per zone, 3HL, test 10%, 50 epochs, batch 10%|18.673|19.22|
+|41|Adrien & Emil|0.3966516599325793|0.2942257636466016|[ANN, 1 per zone, 3HL, test 10%, 50 epochs, batch 10%](https://github.com/Ad-Vi/wind-power-prediction/commit/699ce9f2f304d95a2514efee9eedf2ac4269defe)|18.673|19.22|
 
-### Unsubmitted tries
-
-All those submission code and files can be found in the repo by chosing the corresponding commit (click on the method name for a submission above).
 
 ## References
 
