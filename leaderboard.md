@@ -1,6 +1,7 @@
 # Final leaderboard of the student submissions
 
-Our team is rank at the 21st position after post-contest recomputing of the scores. We were before this recomputing in the top 3.
+Our team is rank at the 21st position after post-contest recomputing of the scores. We were before this recomputing in the top 3.  
+Post-contest recomputing of the scores consists in testing our models on a new test set.
 |rank|submission name|MAE_global recomputed|MAE_global|MAE_Z1 recomputed|MAE_Z1|
 |:---|:--------------|--------------------:|:--------------------|--------------------:|:--------------------|
 |54|Elios|||||

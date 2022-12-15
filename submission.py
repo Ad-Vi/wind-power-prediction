@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import time
+from datetime import datetime
 from argparse import ArgumentParser
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -13,8 +14,12 @@ from sklearn import svm
 import keras
 
 outputFile = open('output.txt', 'w')
-
 def printing(text):
+    """Print the given text on terminal and write it to the output.
+
+    Args:
+        text (string): string to print and write
+    """
     print(text)
     if outputFile:
         outputFile.write(str(text))
@@ -73,6 +78,25 @@ def expected_error(regressor, X_test, Y_test, is_neural_network=False):
         return E
 
 def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initializer='he_uniform', loss='mean_squared_error', optimizer='adam', does_printing=False):
+    """
+    Constructs a neural network with the given parameters. All layer have the same size as the input layer.
+
+    Args:
+        x_size (int): size of the input layer
+        nbr_layers (int): nbre of layer in the neural network
+        activation (str, optional): Activation function in nodes. Defaults to 'relu'.
+        kernel_initializer (str, optional): Initializer for the kernel weights matrix.. Defaults to 'he_uniform'.
+        loss (str, optional): Loss function to use while compiling the model. Defaults to 'mean_squared_error'.
+        optimizer (str, optional): optimizer to use while compiling the model. Defaults to 'adam'.
+        does_printing (bool, optional): whether to print information on terminal. Defaults to False.
+
+    Returns:
+        model: Neural Network model constructed with the given parameters
+        
+    For more information on the parameters, see 
+    https://keras.io/api/models/sequential/
+    https://towardsdatascience.com/designing-your-neural-networks-a5e4617027ed
+    """
     model = keras.models.Sequential()
     # add input layer
     model.add(keras.layers.Dense(x_size, input_dim=x_size, activation=activation, kernel_initializer=kernel_initializer))
@@ -100,12 +124,38 @@ def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initi
     
     return model
 
-def feature_selection(data, does_printing = False):
-    return variance_treshold_feature_selection(data, does_printing=does_printing)
-    # return correlation_feature_extraction(data, does_printing=does_printing)
-    # return data
+def feature_selection(data, type='None', does_printing = False):
+    """
+    Return the data with feature selection applied to the data
+
+    Args:
+        data (dataframe): data to apply feature selection on
+        type (string) : type of feature selection to apply (whether 'UnivariateVarianceTreshold' or 'Correlation'). Default to 'None'.
+        does_printing (bool, optional): whether to print information on terminal. Default to False.
+
+    Returns:
+        data_copy: data with feature selection applied
+    """
+    if type == 'UnivariateVarianceTreshold':
+        return variance_treshold_feature_selection(data, does_printing=does_printing)
+    elif type == 'Correlation':
+        return correlation_feature_extraction(data, does_printing=does_printing)
+    else:
+        return data
 
 def variance_treshold_feature_selection(data, treshold=1e-6, does_printing=False):
+    """
+    Returns the data with features with variance below the treshold removed
+    UNIVARIATE VARIANCE TRESHOLD
+    
+    Args:
+        data (dataframe): data to apply feature selection on
+        treshold (float) : Value for which a feature is removed if lower. Default to '1e-6'.
+        does_printing (bool, optional): whether to print information on terminal. Default to False.
+
+    Returns:
+        data_copy: data with features for which the variance are lower than the tresold removed
+    """
     data_copy = data.copy()
     variances = data.var(numeric_only = True)
     removed = []
@@ -129,6 +179,18 @@ def variance_treshold_feature_selection(data, treshold=1e-6, does_printing=False
     return data_copy
 
 def correlation_feature_extraction(data, treshold=0.9, does_printing=False):
+    """
+    Returns the data with features with correlation with another feature above the treshold removed
+    Only one feature is removed when the correlation between two features is above the treshold.
+    
+    Args:
+        data (dataframe): data to apply feature selection on
+        treshold (float) : Value for which a feature is removed if above. Default to '0.9'.
+        does_printing (bool, optional): whether to print information on terminal. Default to False.
+
+    Returns:
+        data_copy: data with features for which a covariance with another feature above the tresold are removed
+    """
     corr = data.corr()
     remove, removed = [], []
     feature_to_printing = ''
@@ -153,13 +215,80 @@ def correlation_feature_extraction(data, treshold=0.9, does_printing=False):
         plt.savefig('useless/correlation.png')
     return data_copy
 
+def weights(distances):
+    """
+    Compute the weights of distances as 1 / (distances + 10)
+    Weigth function usable in KNN Regressor
+
+    Args:
+        distances (array): array of dictances
+
+    Returns:
+        array: array of weigths
+    """
+    return 1 / (distances + 10)
+
+def scale_data(data, n_features):
+    """
+    Scales the data to be between 0 and 1
+
+    Args:
+        data (dataframe): data to scale
+        n_features (int): number of features in the data
+
+    Returns:
+        data: data scaled
+    """
+    max_features = np.full(n_features, -np.inf)
+    min_features = np.full(n_features, np.inf)
+    for feature_vec in data:
+        for j, feature in enumerate(feature_vec):
+            if max_features[j] < feature:
+                max_features[j] = feature
+            if min_features[j] > feature:
+                min_features[j] = feature
+
+    range_features = max_features - min_features
+    data /= range_features
+    return data
+
+def feature_vec_to_ts(feature_vec):
+    """
+    Transforms a [hour, day, month, year] feature vector to a timestamp
+
+    Args:
+        feature_vec (numpy array): Array of features such as [hour, day, month, year]
+
+    Returns:
+        date: timestamp of the feature vector
+    """
+    year = int(feature_vec[3])
+    month = int(feature_vec[2])
+    day = int(feature_vec[1])
+    hour = int(feature_vec[0])
+    date = datetime(year, month, day, hour)
+    return datetime.timestamp(date)
+
 if __name__ == '__main__':
+    """Main function. It performs (or not) the following steps:
+    Parse arguments
+    Load the data
+    Perform or not feature extraction
+    Perform or not data scaling
+    Split the data
+    Train the model
+    Predict the values
+    Calculate the error
+    Write the predictions in submission files
+    """
     # Parse arguments
     parser = ArgumentParser()
     # printing : whether information are printinged during the computing or not
     parser.add_argument('-d', '--display', type=lambda x: (str(x).lower() == 'true'), default=False, help='printing or not information while computing. Default : False')
     # Test size : proportion of the data used to test our model. By default nul.
     parser.add_argument('-t', '--test_size', type=float, default=0, help='proportion of the data used for test. Default : 0')
+    # Feature selection : Feature selection to apply. None is applied if None. By default None.
+    parser.add_argument('-fs', '--feature_selection', type=str, default='None', help='Feature Selection to apply : None, UnivariateVarianceTreshold, Correlation. Default : None')
 
     mode = "full learn"
     # Argument values
@@ -169,6 +298,7 @@ if __name__ == '__main__':
     if test_size != 0:
         test_size = args.test_size
         mode = "learn and test"
+    feature_selection = args.feature_selection
     
     flatten = True
     N_ZONES = 10

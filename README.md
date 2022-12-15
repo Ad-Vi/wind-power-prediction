@@ -24,6 +24,7 @@ Run it with python3 with the following parameters.
 | ----------- | ----------- | ----------- | ----------- | --------- |
 | `--display` | `-d` | Whether information are print in the terminal during the computing | Boolean | False |
 | `--test_size` | `-t` | Proportion of the data used to test our model | float | 0.0 |
+|`--feature_selection`|`-fs`|Feature selection to apply. None is applied if None. |`None`, `UnivariateVarianceTreshold`, `Correlation`|`None`|
 
 ## Tries and results
 
