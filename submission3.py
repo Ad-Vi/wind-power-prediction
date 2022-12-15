@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error
 from datetime import datetime
 import matplotlib.pyplot as plt
 from scipy.optimize import fmin
@@ -15,18 +16,52 @@ def distance(x0, x1):
     return np.linalg.norm(x0 - x1)
 
 def f(k, X_train, X_test, Y_train, Y_test):
+    k = max(int(k), 1)
     knn = KNeighborsRegressor(n_neighbors=k, weights=weights)
     knn.fit(X_train, Y_train)
     predictions = knn.predict(X_test)
     return mean_absolute_error(Y_test, predictions)
 
 def compute_k(X_train, X_test, Y_train, Y_test):
+    min_k = 1
+    max_k = 7000
+    best_k = dichotomic_search(f, [min_k, max_k], 1500, (X_train, X_test, Y_train, Y_test))
+    
+    start_k = max(best_k - 500, min_k)
+    end_k = min(best_k + 500, max_k)
+    k_values = np.arange(start_k, end_k, 50)
     errors = []
-    k_values = range(1, 1000, 20)
     for k in k_values:
         errors.append(f(k, X_train, X_test, Y_train, Y_test))
 
-    return k_values, np.array(errors)
+    return best_k, k_values, np.array(errors)
+
+def dichotomic_search(func, interval, step, args):
+    best_a = interval[0]
+    v_min = np.inf
+    for a in np.arange(interval[0], interval[1], step):
+        v = func(a, *args)
+        if v < v_min:
+            v_min = v
+            best_a = a
+            print("Linear search: ", a)
+    a = best_a
+    av = v_min
+    while step > 1:
+        step = np.ceil(step / 2)
+        b = max(a - step, interval[0])
+        c = min(a + step, interval[1])
+        bv = func(b, *args)
+        cv = func(c, *args)
+        if bv < av and bv < cv:
+            a = b
+            av = bv
+        elif cv < av:
+            a = c
+            av = cv
+        print("Dichotomic search: ", a)
+    return int(a)
+
 
 def close_input_variances(X, y, dist, l):
     variances = np.zeros(l)
@@ -70,8 +105,8 @@ def feature_vec_to_ts(feature_vec):
     date = datetime(year, month, day, hour)
     return datetime.timestamp(date)
 
-def mean_absolute_error(y1, y2):
-    return np.mean(np.abs(y1 - y2))
+#def mean_absolute_error(y1, y2):
+#    return np.mean(np.abs(y1 - y2))
 
 def split_train_test(X, Y):
     """
@@ -109,14 +144,16 @@ if __name__ == '__main__':
     N_ZONES = 10
     X_format = 'data/X_Zone_{i}.csv'
     Y_format = 'data/Y_Zone_{i}.csv'
+    Y_true_format = 'data/Y_true_Zone_{i}.csv'
 
     os.makedirs('submissions', exist_ok=True)
 
     # Read input and output files (1 per zone)
-    Xs, Ys = [], []
+    Xs, Ys, Ys_true = [], [], []
     for i in range(N_ZONES):
         Xs.append(pd.read_csv(X_format.format(i=i+1)))
         Ys.append(pd.read_csv(Y_format.format(i=i+1)))
+        Ys_true.append(pd.read_csv(Y_true_format.format(i=i+1)))
 
         # Flatten temporal dimension (NOTE: this step is not compulsory)
         if flatten:
@@ -137,6 +174,7 @@ if __name__ == '__main__':
     X = np.zeros((N_ZONES, n_samples, n_features))
     Y = np.zeros((N_ZONES, n_samples))
     X_predict = np.zeros((N_ZONES, predict_size, n_features))
+    Y_predict = np.array(Ys_true)
 
     dates = np.zeros((N_ZONES, n_samples, n_date_features))
     predict_dates = np.zeros((N_ZONES, predict_size, n_date_features))
@@ -195,8 +233,21 @@ if __name__ == '__main__':
 
     # Computed using gradescope test set
     n_neighbors = [24, 23, 987, 600, 61, 50, 64, 3676, 380, 589]
+    #n_neighbors = [24] * 10
+
+    for i in compute_indexes:
+        errors = compute_k(X_train[i], X_test[i], Y_train[i], Y_test[i])
+        #errors = compute_k(X[i], X_predict[i], Y[i], Y_predict[i])
+        plt.figure()
+        plt.plot(errors[1], errors[2])
+        print(errors[0])
+        n_neighbors[i] = int(errors[0])
+
     error = 0
-    """for i in compute_indexes:
+    gradescope_mae = 0
+    gradescope_full_mae = 0
+    selection = np.load('selection.npy')
+    for i in compute_indexes:
         print(i)
         knn = KNeighborsRegressor(n_neighbors=n_neighbors[i], weights=weights)
         knn.fit(X_train[i], Y_train[i])
@@ -208,26 +259,14 @@ if __name__ == '__main__':
         knn = KNeighborsRegressor(n_neighbors=n_neighbors[i], weights=weights)
         knn.fit(X[i], Y[i])
         predictions = knn.predict(X_predict[i])
-        Y_predict = pd.Series(predictions, index=range(predict_size), name='TARGETVAR')
-        Y_predict.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)"""
-
-    for i in compute_indexes:
-        errors = compute_k(X_train[i], X_test[i], Y_train[i], Y_test[i])
-        plt.figure()
-        plt.plot(errors[0], errors[1])
-
-
-    plt.show()
-    
+        gradescope_mae += mean_absolute_error(Y_predict[i][selection == True], predictions[selection == True])
+        gradescope_full_mae += mean_absolute_error(Y_predict[i], predictions)
+        pd.Series(predictions, index=range(predict_size), name='TARGETVAR').to_csv(
+            f'submissions/Y_pred_Zone_{i+1}.csv',
+            index=False
+        )
 
     print("MAE: ", error / N_ZONES)
-    # Example: predict global training mean for each zone
-    #means = np.zeros(N_ZONES)
-    #for i in range(N_ZONES):
-    #    means[i] = Ys[i]['TARGETVAR'].mean()
-
-    # Write submission files (1 per zone). The predicted test series must
-    # follow the order of X_predict.
-    #for i in range(N_ZONES):
-        #Y_test = pd.Series(means[i], index=range(len(Xs[i][1])), name='TARGETVAR')
-        #Y_test.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
+    print("Gradescope MAE: ", gradescope_mae / N_ZONES)
+    print("Gradescope full MAE: ", gradescope_full_mae / N_ZONES)
+    plt.show()

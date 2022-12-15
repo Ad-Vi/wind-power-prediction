@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
 from datetime import datetime
 
 def weights(distances):
@@ -66,14 +67,16 @@ if __name__ == '__main__':
     N_ZONES = 10
     X_format = 'data/X_Zone_{i}.csv'
     Y_format = 'data/Y_Zone_{i}.csv'
+    Y_true_format = 'data/Y_true_Zone_{i}.csv'
 
     os.makedirs('submissions', exist_ok=True)
 
     # Read input and output files (1 per zone)
-    Xs, Ys = [], []
+    Xs, Ys, Ys_true = [], [], []
     for i in range(N_ZONES):
         Xs.append(pd.read_csv(X_format.format(i=i+1)))
         Ys.append(pd.read_csv(Y_format.format(i=i+1)))
+        Ys_true.append(pd.read_csv(Y_true_format.format(i=i+1)))
 
         # Flatten temporal dimension (NOTE: this step is not compulsory)
         if flatten:
@@ -91,6 +94,7 @@ if __name__ == '__main__':
     X_train = np.zeros((N_ZONES, train_size, n_features))
     X_test = np.zeros((N_ZONES, test_size, n_features))
     Y_train = np.zeros((N_ZONES, train_size))
+    Y_test = np.array(Ys_true)
 
     train_dates = np.zeros((N_ZONES, train_size, n_date_features))
     test_dates = np.zeros((N_ZONES, test_size, n_date_features))
@@ -136,14 +140,20 @@ if __name__ == '__main__':
     compute_indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     n_neighbors = [24, 23, 987, 600, 61, 50, 64, 3676, 380, 589]
 
+    mae = 0
     for i in compute_indexes:
         print(i)
         knn = KNeighborsRegressor(n_neighbors=n_neighbors[i], weights=weights)
         knn.fit(X_train[i], Y_train[i])
         predictions = knn.predict(X_test[i])
+        mae += mean_absolute_error(predictions, Y_test[i])
+        pd.Series(predictions, index=range(len(Xs[i][1])), name='TARGETVAR').to_csv(
+            f'submissions/Y_pred_Zone_{i+1}.csv',
+            index=False
+        )
 
-        Y_test = pd.Series(predictions, index=range(len(Xs[i][1])), name='TARGETVAR')
-        Y_test.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
+    mae /= N_ZONES
+    print("MAE: ", mae)
     
 
     # Example: predict global training mean for each zone
