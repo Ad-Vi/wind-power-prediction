@@ -25,28 +25,21 @@ def f(k, X_train, X_test, Y_train, Y_test):
 def compute_k(X_train, X_test, Y_train, Y_test):
     min_k = 1
     max_k = 7000
-    best_k = dichotomic_search(f, [min_k, max_k], 1500, (X_train, X_test, Y_train, Y_test))
+    best_k = dichotomic_search(f, [min_k, max_k], (X_train, X_test, Y_train, Y_test))
     
-    start_k = max(best_k - 500, min_k)
-    end_k = min(best_k + 500, max_k)
-    k_values = np.arange(start_k, end_k, 50)
+    start_k = max(best_k - 100, min_k)
+    end_k = min(best_k + 100, max_k)
+    k_values = np.arange(start_k, end_k, 8)
     errors = []
     for k in k_values:
         errors.append(f(k, X_train, X_test, Y_train, Y_test))
 
     return best_k, k_values, np.array(errors)
 
-def dichotomic_search(func, interval, step, args):
-    best_a = interval[0]
-    v_min = np.inf
-    for a in np.arange(interval[0], interval[1], step):
-        v = func(a, *args)
-        if v < v_min:
-            v_min = v
-            best_a = a
-            print("Linear search: ", a)
-    a = best_a
-    av = v_min
+def dichotomic_search(func, interval, args):
+    step = np.ceil((interval[1] - interval[0]) / 2)
+    a = min(step + interval[0], interval[1])
+    av = func(a, *args)
     while step > 1:
         step = np.ceil(step / 2)
         b = max(a - step, interval[0])
@@ -167,7 +160,7 @@ if __name__ == '__main__':
     n_features = len(features) + 1 # + 1 for timestamp
     n_date_features = len(date_features)
     n_samples = len(Xs[0][0]['ZONEID'])
-    train_size = int(n_samples * .9)
+    train_size = int(n_samples * .8)
     test_size = n_samples - train_size
     predict_size = len(Xs[0][1]['ZONEID'])
 
@@ -216,7 +209,7 @@ if __name__ == '__main__':
     Y_test = np.zeros((N_ZONES, test_size))
     for i in range(N_ZONES):
         first_ts = feature_vec_to_ts(dates[i][0])
-        last_ts = feature_vec_to_ts(dates[i][train_size - 1])
+        last_ts = feature_vec_to_ts(dates[i][n_samples - 1])
         for j, feature_vec in enumerate(dates[i]):
             ts = feature_vec_to_ts(feature_vec)
             X[i][j][n_features - 1] = date_weight * (ts - first_ts) / (last_ts - first_ts)
@@ -235,18 +228,39 @@ if __name__ == '__main__':
     n_neighbors = [24, 23, 987, 600, 61, 50, 64, 3676, 380, 589]
     #n_neighbors = [24] * 10
 
+    plt.rcParams.update({
+        'text.usetex': True,
+        'font.family': 'serif',
+        'font.size': 17,
+        'font.serif': 'Computer Modern Roman',
+        'axes.grid': True,
+        'grid.alpha': .7,
+        'savefig.transparent': True,
+        'savefig.bbox': 'tight',
+        'savefig.format': 'pdf',
+        'markers.fillstyle': 'none',
+        'lines.marker': 'o',
+        'lines.linewidth': 2.1,
+        'axes.formatter.limits' : (0, 0),
+    })
+
+    selection = np.load('selection.npy')
+
     for i in compute_indexes:
-        errors = compute_k(X_train[i], X_test[i], Y_train[i], Y_test[i])
-        #errors = compute_k(X[i], X_predict[i], Y[i], Y_predict[i])
+        #errors = compute_k(X_train[i], X_test[i], Y_train[i], Y_test[i])
+        errors = compute_k(X[i], X_predict[i][selection == True], Y[i], Y_predict[i][selection == True])
         plt.figure()
         plt.plot(errors[1], errors[2])
         print(errors[0])
         n_neighbors[i] = int(errors[0])
+        plt.xlabel(r"$k$")
+        plt.ylabel("MAE")
+        #plt.savefig(f"figs/mae_zone_{i}")
 
     error = 0
     gradescope_mae = 0
     gradescope_full_mae = 0
-    selection = np.load('selection.npy')
+    print("Vector k: ", n_neighbors)
     for i in compute_indexes:
         print(i)
         knn = KNeighborsRegressor(n_neighbors=n_neighbors[i], weights=weights)
@@ -266,7 +280,6 @@ if __name__ == '__main__':
             index=False
         )
 
-    print("MAE: ", error / N_ZONES)
-    print("Gradescope MAE: ", gradescope_mae / N_ZONES)
-    print("Gradescope full MAE: ", gradescope_full_mae / N_ZONES)
-    plt.show()
+    print("Test set MAE: ", error / N_ZONES)
+    print("Public prediction set MAE: ", gradescope_mae / N_ZONES)
+    print("Full prediction set MAE: ", gradescope_full_mae / N_ZONES)
