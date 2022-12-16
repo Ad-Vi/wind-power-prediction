@@ -2,7 +2,6 @@ import os
 import numpy as np
 import pandas as pd
 import time
-from datetime import datetime
 from argparse import ArgumentParser
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -77,7 +76,7 @@ def expected_error(regressor, X_test, Y_test, is_neural_network=False):
         E = (1/test_size) * np.sum(np.abs((Y_test - predictions))) # MAE
         return E
 
-def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initializer='he_uniform', loss='mean_squared_error', optimizer='adam', does_printing=False):
+def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initializer='he_uniform', loss='mean_squared_error', optimizer='adam', does_print=False):
     """
     Constructs a neural network with the given parameters. All layer have the same size as the input layer.
 
@@ -88,7 +87,7 @@ def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initi
         kernel_initializer (str, optional): Initializer for the kernel weights matrix.. Defaults to 'he_uniform'.
         loss (str, optional): Loss function to use while compiling the model. Defaults to 'mean_squared_error'.
         optimizer (str, optional): optimizer to use while compiling the model. Defaults to 'adam'.
-        does_printing (bool, optional): whether to print information on terminal. Defaults to False.
+        does_print (bool, optional): whether to print information on terminal. Defaults to False.
 
     Returns:
         model: Neural Network model constructed with the given parameters
@@ -110,7 +109,7 @@ def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initi
     
     # compile model
     model.compile(loss=loss, optimizer=optimizer)
-    if does_printing:
+    if does_print:
         printing("Neural network :")
         printing("  Input layer : "+str(x_size)+" neurons")
         printing("  Hidden layers : "+str(nbr_layers-2)+" layers of "+str(x_size)+" neurons")
@@ -124,26 +123,26 @@ def construct_Neural_network(x_size, nbr_layers, activation='relu', kernel_initi
     
     return model
 
-def feature_selection(data, type='None', does_printing = False):
+def feature_selection(data, type='None', does_print=False):
     """
     Return the data with feature selection applied to the data
 
     Args:
         data (dataframe): data to apply feature selection on
         type (string) : type of feature selection to apply (whether 'UnivariateVarianceTreshold' or 'Correlation'). Default to 'None'.
-        does_printing (bool, optional): whether to print information on terminal. Default to False.
+        does_print (bool, optional): whether to print information on terminal. Default to False.
 
     Returns:
         data_copy: data with feature selection applied
     """
     if type == 'UnivariateVarianceTreshold':
-        return variance_treshold_feature_selection(data, does_printing=does_printing)
+        return variance_treshold_feature_selection(data, does_print=does_print)
     elif type == 'Correlation':
-        return correlation_feature_extraction(data, does_printing=does_printing)
+        return correlation_feature_extraction(data, does_print=does_print)
     else:
         return data
 
-def variance_treshold_feature_selection(data, treshold=1e-6, does_printing=False):
+def variance_treshold_feature_selection(data, treshold=1e-6, does_print=False):
     """
     Returns the data with features with variance below the treshold removed
     UNIVARIATE VARIANCE TRESHOLD
@@ -151,7 +150,7 @@ def variance_treshold_feature_selection(data, treshold=1e-6, does_printing=False
     Args:
         data (dataframe): data to apply feature selection on
         treshold (float) : Value for which a feature is removed if lower. Default to '1e-6'.
-        does_printing (bool, optional): whether to print information on terminal. Default to False.
+        does_print (bool, optional): whether to print information on terminal. Default to False.
 
     Returns:
         data_copy: data with features for which the variance are lower than the tresold removed
@@ -163,7 +162,7 @@ def variance_treshold_feature_selection(data, treshold=1e-6, does_printing=False
         if variances[i] < treshold:
             removed += [data.columns[i]]
             data_copy.drop(data_copy.columns[i], axis=1, inplace=True)
-    if does_printing:
+    if does_print:
         if len(removed) > 0:
             printing("  Initial features :")
             printing(data.columns)
@@ -178,7 +177,7 @@ def variance_treshold_feature_selection(data, treshold=1e-6, does_printing=False
             printing(data_copy.columns)
     return data_copy
 
-def correlation_feature_extraction(data, treshold=0.9, does_printing=False):
+def correlation_feature_extraction(data, treshold=0.9, does_print=False):
     """
     Returns the data with features with correlation with another feature above the treshold removed
     Only one feature is removed when the correlation between two features is above the treshold.
@@ -186,7 +185,7 @@ def correlation_feature_extraction(data, treshold=0.9, does_printing=False):
     Args:
         data (dataframe): data to apply feature selection on
         treshold (float) : Value for which a feature is removed if above. Default to '0.9'.
-        does_printing (bool, optional): whether to print information on terminal. Default to False.
+        does_print (bool, optional): whether to print information on terminal. Default to False.
 
     Returns:
         data_copy: data with features for which a covariance with another feature above the tresold are removed
@@ -206,7 +205,7 @@ def correlation_feature_extraction(data, treshold=0.9, does_printing=False):
             removed +=[feature]
             data_copy.drop(feature, axis=1, inplace=True)
             feature_to_printing += feature + ' (corr = ' + str(correlation) + ' with '+str(feature2)+'), '
-    if does_printing:
+    if does_print:
         printing('Removed features (with correlation >='+str(treshold)+ ') : '+str(feature_to_printing))
         corr.to_csv("useless/correlation.csv", float_format='%.6f')
         plt.figure()
@@ -215,72 +214,7 @@ def correlation_feature_extraction(data, treshold=0.9, does_printing=False):
         plt.savefig('useless/correlation.png')
     return data_copy
 
-def weights(distances):
-    """
-    Compute the weights of distances as 1 / (distances + 10)
-    Weigth function usable in KNN Regressor
-
-    Args:
-        distances (array): array of dictances
-
-    Returns:
-        array: array of weigths
-    """
-    return 1 / (distances + 10)
-
-def scale_data(data, n_features):
-    """
-    Scales the data to be between 0 and 1
-
-    Args:
-        data (dataframe): data to scale
-        n_features (int): number of features in the data
-
-    Returns:
-        data: data scaled
-    """
-    max_features = np.full(n_features, -np.inf)
-    min_features = np.full(n_features, np.inf)
-    for feature_vec in data:
-        for j, feature in enumerate(feature_vec):
-            if max_features[j] < feature:
-                max_features[j] = feature
-            if min_features[j] > feature:
-                min_features[j] = feature
-
-    range_features = max_features - min_features
-    data /= range_features
-    return data
-
-def feature_vec_to_ts(feature_vec):
-    """
-    Transforms a [hour, day, month, year] feature vector to a timestamp
-
-    Args:
-        feature_vec (numpy array): Array of features such as [hour, day, month, year]
-
-    Returns:
-        date: timestamp of the feature vector
-    """
-    year = int(feature_vec[3])
-    month = int(feature_vec[2])
-    day = int(feature_vec[1])
-    hour = int(feature_vec[0])
-    date = datetime(year, month, day, hour)
-    return datetime.timestamp(date)
-
 if __name__ == '__main__':
-    """Main function. It performs (or not) the following steps:
-    Parse arguments
-    Load the data
-    Perform or not feature extraction
-    Perform or not data scaling
-    Split the data
-    Train the model
-    Predict the values
-    Calculate the error
-    Write the predictions in submission files
-    """
     # Parse arguments
     parser = ArgumentParser()
     # printing : whether information are printinged during the computing or not
@@ -289,18 +223,17 @@ if __name__ == '__main__':
     parser.add_argument('-t', '--test_size', type=float, default=0, help='proportion of the data used for test. Default : 0')
     # Feature selection : Feature selection to apply. None is applied if None. By default None.
     parser.add_argument('-fs', '--feature_selection', type=str, default='None', help='Feature Selection to apply : None, UnivariateVarianceTreshold, Correlation. Default : None')
-
+    
     mode = "full learn"
     # Argument values
     args = parser.parse_args()
-    does_printing = args.display
+    does_print = args.display
     test_size = args.test_size
     if test_size != 0:
         test_size = args.test_size
         mode = "learn and test"
-    feature_selection = args.feature_selection
+    featureSelection = args.feature_selection
     
-    flatten = True
     N_ZONES = 10
     X_format = 'data/X_Zone_{i}.csv'
     Y_format = 'data/Y_Zone_{i}.csv'
@@ -313,42 +246,41 @@ if __name__ == '__main__':
     X_train_all = pd.DataFrame()
     Y_train_all = pd.DataFrame()
     for i in range(N_ZONES):
-        if does_printing:
+        if does_print:
             printing("--Read files for zone "+str(i)+"--")
-        Xs.append(feature_selection(pd.read_csv(X_format.format(i=i+1)), does_printing=does_printing))
-        Ys.append(feature_selection(pd.read_csv(Y_format.format(i=i+1)), does_printing=does_printing))
+        Xs.append(feature_selection(pd.read_csv(X_format.format(i=i+1)), type=featureSelection, does_print=does_print))
+        Ys.append(feature_selection(pd.read_csv(Y_format.format(i=i+1)), type=featureSelection, does_print=does_print))
         Ts.append(None)
-        # Flatten temporal dimension (NOTE: this step is not compulsory)
-        if flatten:
-            X_train_test, X_predict, Y_train_test = split_train_test(Xs[i], Ys[i])  
-            if mode == "full learn":
-                X_train = X_train_test
-                Y_train = Y_train_test
-            else:
-                n_samples = X_train_test.shape[0]
-                testing_size = int(0.1*n_samples)
-                learn_size = n_samples - testing_size
-                X_train = X_train_test[0:learn_size]
-                Y_train = Y_train_test[0:learn_size]
-                Y_test = Y_train_test[learn_size: n_samples]
-                X_test = X_train_test[learn_size: n_samples]
-            # create scaler and fit it on learning data
-            scaler = MinMaxScaler(feature_range=(0, 1))
-            scaler.fit(X_train)
-            # transform training, predict and test data
-            X_train_scaled = scaler.transform(X_train)
-            X_predict_scaled = scaler.transform(X_predict)
-            X_train = pd.DataFrame(X_train_scaled, columns=X_train.columns, index=X_train.index)
-            X_predict = pd.DataFrame(X_predict_scaled, columns=X_predict.columns, index=X_predict.index)
-            if mode == "learn and test":
-                X_test_scaled = scaler.transform(X_test)
-                X_test = pd.DataFrame(X_test_scaled, columns=X_test.columns, index=X_test.index)
-                Ts[i] = (X_test, Y_test['TARGETVAR'])
-            Xs[i] = (X_train, X_predict)
-            Ys[i] = Y_train
-            X_train_all = pd.concat([X_train_all, X_train])
-            Y_train_all = pd.concat([Y_train_all, Y_train])
-    if does_printing:
+        
+        X_train_test, X_predict, Y_train_test = split_train_test(Xs[i], Ys[i])  
+        if mode == "full learn":
+            X_train = X_train_test
+            Y_train = Y_train_test
+        else:
+            n_samples = X_train_test.shape[0]
+            testing_size = int(0.1*n_samples)
+            learn_size = n_samples - testing_size
+            X_train = X_train_test[0:learn_size]
+            Y_train = Y_train_test[0:learn_size]
+            Y_test = Y_train_test[learn_size: n_samples]
+            X_test = X_train_test[learn_size: n_samples]
+        # create scaler and fit it on learning data
+        scaler = MinMaxScaler(feature_range=(0, 1))
+        scaler.fit(X_train)
+        # transform training, predict and test data
+        X_train_scaled = scaler.transform(X_train)
+        X_predict_scaled = scaler.transform(X_predict)
+        X_train = pd.DataFrame(X_train_scaled, columns=X_train.columns, index=X_train.index)
+        X_predict = pd.DataFrame(X_predict_scaled, columns=X_predict.columns, index=X_predict.index)
+        if mode == "learn and test":
+            X_test_scaled = scaler.transform(X_test)
+            X_test = pd.DataFrame(X_test_scaled, columns=X_test.columns, index=X_test.index)
+            Ts[i] = (X_test, Y_test['TARGETVAR'])
+        Xs[i] = (X_train, X_predict)
+        Ys[i] = Y_train
+        X_train_all = pd.concat([X_train_all, X_train])
+        Y_train_all = pd.concat([Y_train_all, Y_train])
+    if does_print:
         printing('Read input and output files\n')
         printing('X_train : Xs[0][0].shape ='+str(Xs[0][0].shape))
         printing('Y_train : Ys[0].shape ='+str(Ys[0].shape))
@@ -362,18 +294,18 @@ if __name__ == '__main__':
     
     # Learning algorithm -------------------------------------
     start = time.time()
-    if does_printing:
+    if does_print:
         printing('Neural Network - Start')
         verbose = 2
     t = time.time()
     for i in range(N_ZONES):
-        regressor = construct_Neural_network(x_size=Xs[0][0].shape[1], nbr_layers=5, does_printing=does_printing)
+        regressor = construct_Neural_network(x_size=Xs[0][0].shape[1], nbr_layers=5, does_print=does_print)
         regressor.fit(Xs[i][0], Ys[i]['TARGETVAR'], epochs=50, batch_size=int(X_train_all.shape[0]/10), verbose=verbose)
-        if does_printing:
+        if does_print:
             printing("Regressor for zone"+str(i)+" constructed and fitted | Time :"+str(time.time()-t))
         t = time.time()
         Ys[i] = (Ys[i], np.array(regressor.predict(Xs[i][1])).flatten())
-        if does_printing:
+        if does_print:
             printing("Predict Zone "+str(i)+" | Time :"+str(time.time()-t))
             printing("    Ys["+str(i)+"][1].shape = "+str(Ys[i][1].shape))
         t = time.time()
@@ -381,11 +313,11 @@ if __name__ == '__main__':
         for i in range(N_ZONES):
             E = expected_error(regressor, Ts[i][0], Ts[i][1], is_neural_network=True)
             Ms.append(E)
-            if does_printing:
+            if does_print:
                 printing("Expected error Zone "+str(i)+" : "+str(E))
         printing("Mean Error : "+str(np.mean(Ms))+" %")
         
-    if does_printing:
+    if does_print:
         printing('Neural Network - End : ' + str(time.time() - start) + ' seconds')
 
     # Example: predict global training mean for each zone
@@ -394,7 +326,7 @@ if __name__ == '__main__':
     for i in range(N_ZONES):
         means[i] = Ys[i][0]['TARGETVAR'].mean()
         means_prediction[i] = Ys[i][1].mean()
-    if does_printing:
+    if does_print:
         printing('\nmeans ='+str(means))
         printing('\nmeans_prediction ='+str(means_prediction))
 
@@ -404,5 +336,5 @@ if __name__ == '__main__':
     for i in range(N_ZONES):
         Y_predict = pd.Series(Ys[i][1], index=range(len(Xs[i][1])), name='TARGETVAR')
         Y_predict.to_csv(f'submissions/Y_pred_Zone_{i+1}.csv', index=False)
-    if does_printing:
+    if does_print:
         printing('Submission files written')

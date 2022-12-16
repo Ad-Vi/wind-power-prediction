@@ -66,8 +66,8 @@ The final ranking can be found in the [leaderboard](https://github.com/Ad-Vi/win
 
 ## References
 
-<https://scikit-learn.org/stable/supervised_learning.html#supervised-learning>  
+<https://scikit-learn.org/stable/supervised_learning.html#supervised-learning>
 <https://vishalramesh.substack.com/p/feature-selection-correlation-and-p-value-da8921bfb3cf?s=w>
-<https://chat.openai.com/chat>
-<https://towardsdatascience.com/designing-your-neural-networks-a5e4617027ed>
+<https://chat.openai.com/chat>  
+<https://towardsdatascience.com/designing-your-neural-networks-a5e4617027ed>  
 <https://keras.io/api/models/sequential/>
